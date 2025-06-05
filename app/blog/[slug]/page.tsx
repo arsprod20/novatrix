@@ -300,3 +300,14 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 }
 
 */}
+
+
+import React from 'react'
+
+const page = () => {
+  return (
+    <div></div>
+  )
+}
+
+export default page
