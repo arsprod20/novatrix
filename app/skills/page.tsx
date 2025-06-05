@@ -196,10 +196,10 @@ export default function SkillsPage() {
     {
       category: 'DevOps & Cloud',
       skills: [
-        { name: 'Docker', level: 4, demand: 5, logo: '/logos/docker.png' },
-        { name: 'AWS', level: 4, demand: 5, logo: '/logos/aws.png' },
-        { name: 'Kubernetes', level: 3, demand: 4, logo: '/logos/kubernetes.png' },
-        { name: 'Terraform', level: 3, demand: 3, logo: '/logos/terraform.png' }
+        { name: 'Docker', level: 2, demand: 5, logo: '/logos/docker.png' },
+        { name: 'AWS', level: 2, demand: 5, logo: '/logos/aws.png' },
+        { name: 'Kubernetes', level: 2, demand: 4, logo: '/logos/kubernetes.png' },
+        { name: 'Terraform', level: 2, demand: 3, logo: '/logos/terraform.png' }
       ],
       color: 'from-amber-500 to-yellow-400'
     },
