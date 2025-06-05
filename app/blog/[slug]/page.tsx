@@ -1,4 +1,5 @@
-'use client';
+{/** 
+    'use client';
 
 import React, { Suspense } from 'react';
 import { notFound } from 'next/navigation';
@@ -58,7 +59,7 @@ function BlogContent({ params }: { params: { slug: string } }) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    {/* Métadonnées */}
+                    // Métadonnées 
                     <div className="flex flex-wrap gap-4 items-center text-sm text-foreground/80 mb-6">
                         <span className="px-3 py-1 bg-[#00eaff]/10 text-[#00eaff] rounded-full">
                             {post.category}
@@ -73,12 +74,11 @@ function BlogContent({ params }: { params: { slug: string } }) {
                         </div>
                     </div>
 
-                    {/* Titre */}
+                    
                     <h1 className="text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#00eaff] to-[#00b4d8]">
                         {post.title}
                     </h1>
 
-                    {/* Auteur */}
                     <div className="flex items-center gap-4 mb-12">
                         <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#00eaff]/50">
                             <Image
@@ -95,7 +95,6 @@ function BlogContent({ params }: { params: { slug: string } }) {
                         </div>
                     </div>
 
-                    {/* Image principale */}
                     <div className="relative h-64 md:h-96 rounded-xl overflow-hidden mb-12 border border-foreground/10">
                         <Image
                             src={post.image}
@@ -107,13 +106,11 @@ function BlogContent({ params }: { params: { slug: string } }) {
                         />
                     </div>
 
-                    {/* Contenu */}
                     <div
                         className="prose prose-invert max-w-none"
                         dangerouslySetInnerHTML={{ __html: post.content }}
                     />
 
-                    {/* Commentaires */}
                     <section className="mt-20 border-t border-foreground/10 pt-12">
                         <h2 className="text-2xl font-bold mb-8 flex items-center gap-3">
                             <MessageSquare className="text-[#00eaff]" />
@@ -146,7 +143,6 @@ function BlogContent({ params }: { params: { slug: string } }) {
                                 <h3 className="text-lg font-medium text-[#00eaff]">Laisser un commentaire</h3>
 
                                 <div className="grid grid-cols-1 gap-4">
-                                    {/* Champ nom + anonyme */}
                                     <div className="relative">
                                         <input
                                             type="text"
@@ -173,7 +169,6 @@ function BlogContent({ params }: { params: { slug: string } }) {
                                         </div>
                                     </div>
 
-                                    {/* Champ commentaire */}
                                     <div className="relative">
                                         <textarea
                                             required
@@ -186,7 +181,6 @@ function BlogContent({ params }: { params: { slug: string } }) {
                                     </div>
                                 </div>
 
-                                {/* Consentement conditionnel */}
                                 <div className="flex items-center space-x-2" id="consent-container">
                                     <input
                                         type="checkbox"
@@ -237,7 +231,6 @@ function BlogContent({ params }: { params: { slug: string } }) {
                                 </button>
                             </form>
 
-                            {/* Exemple de commentaire */}
                             <div className="p-6 bg-background/50 border border-foreground/10 rounded-lg neon-comment">
                                 <div className="flex items-center gap-4 mb-4">
                                     <div className="relative w-10 h-10 rounded-full overflow-hidden border border-[#00eaff]/50">
@@ -263,7 +256,6 @@ function BlogContent({ params }: { params: { slug: string } }) {
                 </motion.div>
             </article>
 
-            {/* Articles similaires */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-foreground/10">
                 <h2 className="text-3xl font-bold mb-8">Articles similaires</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -306,3 +298,5 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         </Suspense>
     );
 }
+
+*/}
