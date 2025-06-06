@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 
 export async function loadTranslations(lang: string, page: string) {
-  // Chemin vers le fichier de traduction
   const filePath = path.join(
     process.cwd(), 
     'public', 
@@ -12,7 +11,6 @@ export async function loadTranslations(lang: string, page: string) {
   );
 
   try {
-    // Lire le fichier
     const fileContents = fs.readFileSync(filePath, 'utf8');
     return JSON.parse(fileContents);
   } catch (error) {

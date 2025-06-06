@@ -37,10 +37,8 @@ export default function ContactPage() {
                 body: JSON.stringify(data),
             });
 
-            if (response.status === 429) { // Code d'erreur pour "Too Many Requests"
-                //const errorData = await response.json();
+            if (response.status === 429) { 
                 setRateLimitExceeded(true);
-                //setRateLimitMessage(errorData.error || 'Limite de messages atteinte');
                 throw new Error('Limite de messages atteinte');
             }
 
@@ -57,7 +55,6 @@ export default function ContactPage() {
 
     return (
         <div className="min-h-screen pt-20 bg-gradient-to-b from-background to-background/90 relative overflow-hidden">
-            {/* Effets visuels de fond */}
             <div className="absolute inset-0 -z-10">
                 <div className="absolute top-[10%] left-[10%] w-64 h-64 bg-[#00eaff]/10 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-[20%] right-[10%] w-48 h-48 bg-[#00eaff]/15 rounded-full blur-3xl"></div>
@@ -98,7 +95,6 @@ export default function ContactPage() {
                 </motion.div>
 
                 <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
-                    {/* Formulaire de contact */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -255,7 +251,6 @@ export default function ContactPage() {
                                             </>
                                         ) : rateLimitExceeded ? (
                                             <div className="flex items-center gap-2">
-                                                {/*<span>Limite atteinte</span>*/}
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fillRule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clipRule="evenodd" />
                                                 </svg>
@@ -420,7 +415,6 @@ export default function ContactPage() {
                 </div>
             </section>
 
-            {/* Élément décoratif animé */}
             <motion.div
                 className="flex justify-center mt-16"
                 initial={{ opacity: 0, scale: 0 }}

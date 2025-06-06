@@ -40,7 +40,6 @@ export default function SkillsPage() {
   const [activeTab, setActiveTab] = useState<'tech' | 'soft' | 'tools'>('tech');
   const [isHovered, setIsHovered] = useState<string | null>(null);
 
-  // Animation pour les étoiles de fond
   useEffect(() => {
     const stars = document.getElementById('stars');
     if (stars) {
@@ -167,9 +166,6 @@ export default function SkillsPage() {
     </div>
   );
 
-  // =========================================================================
-  // SECTION MATRICE DE COMPÉTENCES STRATÉGIQUES AVEC LOGOS
-  // =========================================================================
 
   const skillMatrix = [
     {
@@ -280,7 +276,6 @@ export default function SkillsPage() {
   };
 
 
-  // Système de niveau sans pourcentages
   const getLevelLabel = (level: number) => {
     if (level <= 1) return 'Beginner';
     if (level <= 2) return 'Intermediate';
@@ -350,14 +345,11 @@ export default function SkillsPage() {
 
   return (
     <div className="min-h-screen pt-20 bg-gradient-to-b from-background to-[#0a192f] relative overflow-hidden">
-      {/* Étoiles de fond animées */}
       <div id="stars" className="absolute inset-0 z-0 pointer-events-none" />
 
-      {/* Effets de lumière */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00eaff]/10 rounded-full filter blur-[100px] opacity-30 -z-10" />
       <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full filter blur-[100px] opacity-30 -z-10" />
 
-      {/* Section Principale */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -400,7 +392,6 @@ export default function SkillsPage() {
           </motion.p>
         </motion.div>
 
-        {/* Navigation par onglets */}
         <motion.div
           className="flex justify-center mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -438,7 +429,6 @@ export default function SkillsPage() {
           </div>
         </motion.div>
 
-        {/* Compétences Techniques */}
         <AnimatePresence mode="wait">
           {activeTab === 'tech' && (
             <motion.div
@@ -500,7 +490,6 @@ export default function SkillsPage() {
           )}
         </AnimatePresence>
 
-        {/* Compétences Douces */}
         <AnimatePresence mode="wait">
           {activeTab === 'soft' && (
             <motion.div
@@ -569,7 +558,6 @@ export default function SkillsPage() {
           )}
         </AnimatePresence>
 
-        {/* Outils */}
         <AnimatePresence mode="wait">
           {activeTab === 'tools' && (
             <motion.div
@@ -680,7 +668,6 @@ export default function SkillsPage() {
           </div>
         </motion.div>
 
-        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}

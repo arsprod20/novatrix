@@ -1,6 +1,5 @@
 'use client';
 
-// components/Home.tsx
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import Image from 'next/image';
@@ -14,9 +13,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import CurrentProject from '@/components/CurrentProject'
 
-
-
-// Styles Swiper
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -348,22 +344,19 @@ export default function Home() {
 
   const closeProjectModal = () => {
     setSelectedProject(null);
-    setIsFullscreen(false); // Désactive le plein écran
+    setIsFullscreen(false); 
   };
 
 
   return (
     <>
-      {/* Hero Section */}
       <section className="min-h-[90vh] flex flex-col-reverse md:flex-col lg:flex-row items-center justify-between gap-8 md:gap-12 py-8 md:py-12 px-4 sm:px-8 lg:px-16 relative overflow-hidden">
-        {/* Effets de fond */}
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#00eaff]/10 rounded-full blur-3xl animate-pulse-slow"></div>
           <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-[#00eaff]/15 rounded-full blur-3xl"></div>
           <div className="absolute top-1/3 right-1/3 w-32 h-32 bg-[#00eaff]/20 rounded-full blur-3xl animate-pulse-slow animation-delay-2000"></div>
         </div>
 
-        {/* Contenu texte - en bas sur mobile, à gauche sur desktop */}
         <motion.div
           className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left mt-8 md:mt-0"
           initial={{ opacity: 0, y: 20 }}
@@ -459,7 +452,6 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* Image - en haut sur mobile, à droite sur desktop */}
         <motion.div
           className="flex-1 flex justify-center w-full md:w-auto mt-4 md:mt-0"
           initial={{ opacity: 0, scale: 0.8 }}
@@ -484,11 +476,9 @@ export default function Home() {
               <div className="absolute inset-0 rounded-full border-2 border-[#00eaff]/30 animate-pulse z-0" />
             </motion.div>
 
-            {/* Effet de halo pour mobile */}
             <div className="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#00eaff]/10 rounded-full blur-xl md:blur-2xl" />
           </div>
 
-          {/* Effet de particules animées autour de l'image (visible sur desktop) */}
           <div className="hidden lg:block">
             {[...Array(5)].map((_, i) => (
               <motion.div
@@ -541,10 +531,8 @@ export default function Home() {
           </div>
 
           <div className="relative">
-            {/* Ligne de temps principale */}
             <div className="absolute left-0 md:left-1/2 top-0 h-full w-0.5 bg-gradient-to-b from-transparent via-foreground/20 to-transparent transform md:-translate-x-1/2 z-0 hidden md:block"></div>
 
-            {/* Points de connexion pour mobile */}
             <div className="absolute left-6 top-0 h-full w-0.5 bg-gradient-to-b from-transparent via-foreground/20 to-transparent z-0 block md:hidden"></div>
 
             <div className="space-y-8 md:space-y-10">
@@ -557,9 +545,7 @@ export default function Home() {
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  {/* Conteneur principal */}
                   <div className={`flex flex-col md:flex-row ${index % 2 === 0 ? "md:items-start" : "md:items-end"}`}>
-                    {/* Date et icône - version desktop */}
                     <div className={`hidden md:flex md:w-1/4 items-center ${index % 2 === 0 ? "md:justify-end md:pr-8" : "md:justify-start md:pl-8"}`}>
                       <div className="flex items-center gap-3">
                         <div className={`p-2 rounded-full bg-gradient-to-r ${item.color} shadow-lg`}>
@@ -571,18 +557,14 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* Point de timeline pour desktop */}
                     <div className={`absolute left-0 md:left-1/2 top-6 w-5 h-5 rounded-full bg-gradient-to-r ${item.color} border-4 border-background transform md:-translate-x-1/2 z-10 flex items-center justify-center group-hover:scale-125 transition-transform`}>
                       <div className="w-1.5 h-1.5 bg-background rounded-full"></div>
                     </div>
 
-                    {/* Contenu principal */}
                     <div className="md:w-1/2 bg-background border border-foreground/10 rounded-2xl p-5 shadow-lg backdrop-blur-sm overflow-hidden relative transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1">
-                      {/* Effet de fond au survol */}
                       <div className="absolute inset-0 bg-gradient-to-br from-background to-background/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
 
                       <div className="flex flex-col">
-                        {/* En-tête pour mobile */}
                         <div className="md:hidden flex items-center gap-3 mb-4 pl-1">
                           <div className={`p-2 rounded-full bg-gradient-to-r ${item.color}`}>
                             {item.icon}
@@ -592,12 +574,10 @@ export default function Home() {
                           </span>
                         </div>
 
-                        {/* Point de timeline pour mobile */}
                         <div className="absolute -left-[18px] top-8 w-4 h-4 rounded-full bg-gradient-to-r from-[#00eaff] to-cyan-300 border-4 border-background z-10 flex items-center justify-center md:hidden">
                           <div className="w-1.5 h-1.5 bg-background rounded-full"></div>
                         </div>
 
-                        {/* Badge de type */}
                         <div className="mb-3">
                           <span className={`px-3 py-1 rounded-full text-sm font-medium ${item.type === "academic" ? "bg-purple-900/20 text-purple-300" : "bg-cyan-900/20 text-cyan-300"}`}>
                             {item.type === "academic" ? "Formation" : "Expérience"}
@@ -617,7 +597,6 @@ export default function Home() {
                           {item.description}
                         </p>
 
-                        {/* Ligne animée en bas */}
                         <motion.div
                           className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00eaff] to-transparent"
                           initial={{ width: 0 }}
@@ -628,7 +607,6 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* Espace pour alignement desktop */}
                     <div className={`hidden md:block md:w-1/4 ${index % 2 === 0 ? "order-first" : ""}`}></div>
                   </div>
                 </motion.div>
@@ -740,7 +718,6 @@ export default function Home() {
               >
                 <div className="h-full bg-gradient-to-br from-background to-background/80 rounded-2xl border border-foreground/10 p-0.5 shadow-lg overflow-hidden">
                   <div className="h-full bg-background rounded-[15px] p-6 relative overflow-hidden">
-                    {/* Effet de fond animé */}
                     <motion.div
                       className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                       initial={{ scale: 0.8, opacity: 0 }}
@@ -750,7 +727,6 @@ export default function Home() {
                     </motion.div>
 
                     <div className="relative z-10">
-                      {/* Icône animée */}
                       <motion.div
                         className="w-16 h-16 rounded-xl bg-gradient-to-br from-background to-foreground/5 flex items-center justify-center mb-6"
                         whileHover={{
@@ -897,10 +873,8 @@ export default function Home() {
                   boxShadow: '0 25px 50px -12px rgba(0, 234, 255, 0.15)'
                 }}
               >
-                {/* Effet de fond animé au survol */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#00eaff]/5 to-cyan-300/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
 
-                {/* Animation du cercle */}
                 <motion.div
                   className="w-20 h-20 rounded-full bg-gradient-to-br from-[#00eaff]/10 to-cyan-300/10 flex items-center justify-center mx-auto mb-6 text-[#00eaff] text-2xl font-bold"
                   whileHover={{
@@ -913,7 +887,6 @@ export default function Home() {
                   {step.number}
                 </motion.div>
 
-                {/* Icône animée */}
                 <motion.div
                   className="mb-4"
                   whileHover={{ scale: 1.2, rotate: 5 }}
@@ -925,7 +898,6 @@ export default function Home() {
                 <h3 className="text-xl font-semibold mb-3 group-hover:text-[#00eaff] transition-colors">{step.title}</h3>
                 <p className="text-foreground/80 group-hover:text-foreground transition-colors">{step.description}</p>
 
-                {/* Ligne animée en bas */}
                 <motion.div
                   className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#00eaff] to-transparent opacity-0 group-hover:opacity-100"
                   initial={{ width: 0 }}
@@ -1109,7 +1081,6 @@ export default function Home() {
 
       {/* Projects Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-background/90 relative overflow-hidden">
-        {/* Effet de fond animé */}
         <div className="absolute inset-0 z-0">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#00eaff]/10 rounded-full blur-3xl animate-pulse-slow"></div>
           <div className="absolute bottom-1/3 right-1/3 w-48 h-48 bg-[#bc00ff]/10 rounded-full blur-3xl animate-pulse-medium"></div>
@@ -1183,7 +1154,6 @@ export default function Home() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
 
-                    {/* Badge de statut */}
                     <div className="absolute top-4 right-4 px-3 py-1 bg-background/80 backdrop-blur-sm text-xs font-bold rounded-full border border-foreground/10">
                       {project.status}
                     </div>
@@ -1233,7 +1203,6 @@ export default function Home() {
               </SwiperSlide>
             ))}
 
-            {/* Navigation personnalisée */}
             <div className="swiper-pagination !bottom-0 mt-8"></div>
 
             <div className="swiper-button-prev !text-[#00eaff] after:!text-xl"></div>
@@ -1258,7 +1227,6 @@ export default function Home() {
                 </svg>
               </button>
 
-              {/* Bouton plein écran */}
               <button
                 onClick={() => setIsFullscreen(!isFullscreen)}
                 className="absolute top-4 right-16 z-20 p-2 rounded-full bg-background/80 backdrop-blur-sm border border-[#00eaff]/20 text-[#00eaff] hover:bg-[#00eaff]/10 transition-colors"
@@ -1274,7 +1242,6 @@ export default function Home() {
                 )}
               </button>
 
-              {/* Carrousel d'images */}
               <div className={`relative ${isFullscreen ? 'h-[calc(100vh-2rem)]' : 'h-[30rem]'}`}>
                 <div className="absolute inset-0">
                   <Image
@@ -1285,7 +1252,6 @@ export default function Home() {
                   />
                 </div>
 
-                {/* Navigation entre images */}
                 {selectedProject.images.length > 1 && (
                   <>
                     <button
@@ -1314,7 +1280,6 @@ export default function Home() {
                   </>
                 )}
 
-                {/* Pagination des images */}
                 {selectedProject.images.length > 1 && (
                   <div className="absolute bottom-4 left-0 right-0 flex justify-center z-10">
                     <div className="flex space-x-2">

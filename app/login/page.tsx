@@ -1,4 +1,3 @@
-// app/login/page.tsx
 'use client';
 
 import { motion } from 'framer-motion';
@@ -37,7 +36,7 @@ export default function LoginPage() {
       });
 
       if (response.ok) {
-        window.location.href = '/dashboard'; // Redirection full page
+        window.location.href = '/dashboard'; 
       } else {
         const errorData = await response.json();
         setError(errorData.error || 'Login failed.');

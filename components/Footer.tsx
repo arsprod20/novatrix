@@ -1,4 +1,3 @@
-// components/Footer.tsx
 'use client';
 
 import Link from 'next/link';
@@ -34,7 +33,6 @@ export default function Footer() {
     },
   ];
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -59,7 +57,6 @@ export default function Footer() {
       className="border-t border-foreground/10 bg-gradient-to-b from-background/70 to-background pt-20 relative overflow-hidden"
       role="contentinfo"
     >
-      {/* Effet visuel de fond */}
       <div className="absolute inset-0 z-0">
         <div className="absolute -top-[100px] left-[10%] w-64 h-64 bg-[#00eaff]/10 rounded-full blur-3xl"></div>
         <div className="absolute top-[50%] right-[15%] w-48 h-48 bg-[#00eaff]/15 rounded-full blur-3xl"></div>
@@ -74,7 +71,6 @@ export default function Footer() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {/* Section Contact */}
           <motion.div className="space-y-5" variants={itemVariants}>
             <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-[#00eaff]">
               Quick Contact
@@ -96,7 +92,6 @@ export default function Footer() {
             </Link>
           </motion.div>
 
-          {/* Navigation */}
           <motion.nav 
             aria-label="Navigation principale" 
             className="space-y-5"
@@ -123,7 +118,6 @@ export default function Footer() {
             </ul>
           </motion.nav>
 
-          {/* Réseaux Sociaux */}
           <motion.div className="space-y-5" variants={itemVariants}>
             <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-[#00eaff]">
               Social Media
@@ -151,7 +145,6 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Back to Top */}
           <motion.div 
             className="space-y-5 md:text-right flex md:block flex-col items-center"
             variants={itemVariants}
@@ -175,7 +168,6 @@ export default function Footer() {
           </motion.div>
         </motion.div>
 
-        {/* Copyright */}
         <motion.div 
           className="border-t border-foreground/10 pt-8 text-center"
           initial={{ opacity: 0, y: 20 }}

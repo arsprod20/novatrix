@@ -160,18 +160,15 @@ export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState('Tous');
   const POSTS_PER_PAGE = 6;
   
-  // Filtrer les articles par catégorie
   const filteredPosts = selectedCategory === 'Tous' 
     ? blogPosts 
     : blogPosts.filter(post => post.category === selectedCategory);
   
-  // Calcul de la pagination
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
   const indexOfLastPost = currentPage * POSTS_PER_PAGE;
   const indexOfFirstPost = indexOfLastPost - POSTS_PER_PAGE;
   const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
   
-  // Réinitialiser la pagination quand la catégorie change
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedCategory]);

@@ -1,4 +1,3 @@
-// components/Header.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -79,7 +78,6 @@ export default function Header() {
         aria-label="Navigation principale"
       >
         <div className="flex justify-between items-center h-16">
-          {/* Logo avec effet néon amélioré */}
           <Link 
             href="/" 
             className="flex items-center group relative"
@@ -102,7 +100,6 @@ export default function Header() {
             </motion.div>
           </Link>
 
-          {/* Navigation Desktop - Design plus épuré */}
           <ul className="hidden md:flex space-x-6">
             {links.map((link) => {
               const isActive = pathname === link.path;
@@ -132,7 +129,6 @@ export default function Header() {
             })}
           </ul>
 
-          {/* Bouton Menu Mobile - Design moderne */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -158,7 +154,6 @@ export default function Header() {
           </motion.button>
         </div>
 
-        {/* Menu Mobile - Nouveau design avec effet de carte flottante */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div

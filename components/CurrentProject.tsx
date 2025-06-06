@@ -1,4 +1,3 @@
-// components/CurrentProject.tsx
 'use client';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -21,7 +20,6 @@ import {
   ChevronUpIcon
 } from '@heroicons/react/24/outline';
 
-// Import des logos PNG
 import reactLogo from '@/public/logos/react.png';
 import typescriptLogo from '@/public/logos/typescript.png';
 import tailwindLogo from '@/public/logos/tailwindcss.png';
@@ -80,7 +78,6 @@ export default function CurrentProject() {
       transition={{ duration: 0.7 }}
       className="bg-background border border-foreground/10 rounded-2xl p-6 md:p-7 shadow-lg overflow-hidden"
     >
-      {/* En-tête simplifié */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
         <div className="flex items-center gap-3">
           <div className="p-2.5 rounded-lg bg-gradient-to-r from-red-500 to-rose-600">
@@ -103,7 +100,6 @@ export default function CurrentProject() {
         </div>
       </div>
       
-      {/* Titre et description concis */}
       <div className="mb-6">
         <h3 className="text-2xl font-bold mb-2 text-foreground">
           {project.title}
@@ -111,12 +107,10 @@ export default function CurrentProject() {
         <p className="text-foreground/80">{project.description}</p>
       </div>
       
-      {/* Barre de progression principale */}
       <div className="mb-6">
         <ProgressBar percentage={project.progress} />
       </div>
       
-      {/* Section des fonctionnalités avec accordéon */}
       <div className="mb-6">
         <div 
           className="flex items-center justify-between cursor-pointer"
@@ -188,7 +182,6 @@ export default function CurrentProject() {
         </AnimatePresence>
       </div>
       
-      {/* Technologies utilisées avec logos */}
       <div className="mb-6">
         <h4 className="text-lg font-semibold mb-3 text-foreground flex items-center gap-2">
           <CodeBracketIcon className="w-5 h-5 text-purple-500" />
@@ -204,7 +197,6 @@ export default function CurrentProject() {
                 backgroundColor: 'rgba(139, 92, 246, 0.1)'
               }}
             >
-              {/* Utilisation du composant Image pour les PNG */}
               <div className="w-5 h-5 flex items-center justify-center relative">
                 <Image 
                   src={tech.logo}

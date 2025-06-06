@@ -1,4 +1,3 @@
-// app/projects/page.tsx
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -141,7 +140,6 @@ export default function ProjectsPage() {
   const projectsPerPage = 3;
   const swiperRef = useRef<SwiperType | null>(null);
 
-  // Animation pour les étoiles de fond
   useEffect(() => {
     const stars = document.getElementById('stars');
     if (stars) {
@@ -158,24 +156,21 @@ export default function ProjectsPage() {
     }
   }, []);
 
-  // Filtrer les projets
   useEffect(() => {
     if (selectedCategory === "All") {
       setFilteredProjects(projects);
     } else {
       setFilteredProjects(projects.filter(project => project.category === selectedCategory));
     }
-    setCurrentPage(1); // Réinitialiser à la première page quand la catégorie change
+    setCurrentPage(1); 
   }, [selectedCategory]);
 
-  // Réinitialiser l'index du slider lors de l'ouverture d'un projet
   useEffect(() => {
     if (selectedProject) {
       setActiveIndex(0);
     }
   }, [selectedProject]);
 
-  // Calcul des projets à afficher pour la pagination
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
   const currentProjects = filteredProjects.slice(indexOfFirstProject, indexOfLastProject);
@@ -197,14 +192,11 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen pt-20 bg-gradient-to-b from-background to-[#0a192f] relative overflow-hidden">
-      {/* Étoiles de fond animées */}
       <div id="stars" className="absolute inset-0 z-0 pointer-events-none" />
 
-      {/* Effets de lumière */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00eaff]/10 rounded-full filter blur-[100px] opacity-30 -z-10" />
       <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full filter blur-[100px] opacity-30 -z-10" />
 
-      {/* Section Principale */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -291,7 +283,6 @@ export default function ProjectsPage() {
                 onMouseEnter={() => setIsHovered(project.id)}
                 onMouseLeave={() => setIsHovered(null)}
               >
-                {/* Image du projet */}
                 <div className="relative h-60 overflow-hidden">
                   <Image
                     src={project.images[0]}
@@ -304,7 +295,6 @@ export default function ProjectsPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background/90" />
 
-                  {/* Badge multi-images */}
                   {project.images.length > 1 && (
                     <div className="absolute bottom-4 right-4 bg-background/80 text-foreground px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
                       <div className="flex">
@@ -319,7 +309,6 @@ export default function ProjectsPage() {
                     </div>
                   )}
 
-                  {/* Animation de survol */}
                   {isHovered === project.id && (
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-b from-transparent to-[#00eaff]/10"
@@ -344,7 +333,6 @@ export default function ProjectsPage() {
                   </motion.div>
                 )}
 
-                {/* Contenu */}
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <motion.div
@@ -358,7 +346,6 @@ export default function ProjectsPage() {
 
                   <p className="text-foreground/80 mb-4">{project.description}</p>
 
-                  {/* Technologies */}
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tech.map((tech) => (
                       <motion.span
@@ -371,7 +358,6 @@ export default function ProjectsPage() {
                     ))}
                   </div>
 
-                  {/* Liens */}
                   <div className="flex gap-4">
                     <a
                       href={project.demo}
@@ -400,7 +386,6 @@ export default function ProjectsPage() {
           </AnimatePresence>
         </div>
 
-        {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex justify-center items-center gap-6 mt-12">
             <motion.button
@@ -439,7 +424,6 @@ export default function ProjectsPage() {
           </div>
         )}
 
-        {/* Modal de détails du projet */}
         <AnimatePresence>
           {selectedProject && (
             <motion.div
@@ -457,7 +441,6 @@ export default function ProjectsPage() {
                 onClick={(e) => e.stopPropagation()}
                 layoutId={`project-${selectedProject.id}`}
               >
-                {/* Header modal */}
                 <div className="sticky top-0 bg-background border-b border-foreground/10 p-6 flex justify-between items-center">
                   <h3 className="text-3xl font-bold text-foreground">{selectedProject.title}</h3>
                   <button
@@ -468,9 +451,7 @@ export default function ProjectsPage() {
                   </button>
                 </div>
 
-                {/* Contenu modal */}
                 <div className="p-6">
-                  {/* Carrousel Swiper */}
                   <div className="relative mb-6">
                     <Swiper
                       modules={[Navigation, Pagination]}
@@ -505,7 +486,6 @@ export default function ProjectsPage() {
                       ))}
                     </Swiper>
 
-                    {/* Navigation personnalisée */}
                     <div className="absolute bottom-4 right-4 z-10 bg-background/80 px-2 py-1 rounded-full text-sm text-foreground/80">
                       {activeIndex + 1} / {selectedProject.images.length}
                     </div>
@@ -606,7 +586,6 @@ export default function ProjectsPage() {
           )}
         </AnimatePresence>
 
-        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
