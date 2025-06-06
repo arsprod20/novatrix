@@ -27,7 +27,7 @@ export default function Footer() {
     },
     {
       name: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/amadou-sow-8390a124a/',
+      href: 'https://www.linkedin.com/in/amadou-sow-8390a124a',
       Icon: Linkedin,
       ariaLabel: 'Visit my LinkedIn',
     },

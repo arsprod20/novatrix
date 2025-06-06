@@ -382,7 +382,7 @@ export default function ContactPage() {
                                 {[
                                     {
                                         icon: <LinkedinIcon className="w-6 h-6" />,
-                                        href: "https://www.linkedin.com/in/amadou-sow-8390a124a/",
+                                        href: "https://www.linkedin.com/in/amadou-sow-8390a124a",
                                         label: "LinkedIn"
                                     },
                                     {
