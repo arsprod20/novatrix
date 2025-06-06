@@ -1,0 +1,15 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /login
+Disallow: /dashboard
+Disallow: /signup
+
+# Host
+Host: https://www.amadousow.dev
+
+# Sitemaps
+Sitemap: https://www.amadousow.dev/sitemap.xml
