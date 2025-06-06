@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* COULEURS FORCÉES EN MODE SOMBRE */
+  --background: linear-gradient(135deg, #010409, #020c1b, #00040a);
+  --foreground: #e6faff; /* Texte bleuté */
 }
 
 @theme inline {
@@ -12,26 +13,19 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Fond sombre quasi noir avec teinte bleu nuit */
-    --background: linear-gradient(135deg, #010409, #020c1b, #00040a);
-    --foreground: #e6faff; /* Texte très clair, presque blanc-bleuté */
-  }
-
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 30% 30%, #00ffff33, transparent 60%),
-                radial-gradient(circle at 70% 70%, #00bfff22, transparent 60%);
-    background-repeat: no-repeat;
-    z-index: -1;
-    opacity: 0.12; /* effet néon discret mais visible */
-  }
+/* EFFET DE FOND PERMANENT */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 30%, #00ffff33, transparent 60%),
+              radial-gradient(circle at 70% 70%, #00bfff22, transparent 60%);
+  background-repeat: no-repeat;
+  z-index: -1;
+  opacity: 0.12;
 }
 
 body {
@@ -57,7 +51,6 @@ h1, h2, h3 {
   100% { background-position: 0% 50%; }
 }
 
-
 .neon-text {
   text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff40;
 }
@@ -78,8 +71,7 @@ h1, h2, h3 {
   box-shadow: 0 0 10px #00eaff;
 }
 
-
-/* styles/globals.css */
+/* Responsive DataGrid */
 @media (max-width: 768px) {
   .MuiDataGrid-virtualScroller {
     overflow-x: auto !important;
@@ -101,7 +93,7 @@ h1, h2, h3 {
   }
 }
 
-
+/* Animations */
 @keyframes pulse-slow {
   0%, 100% { opacity: 0.5; }
   50% { opacity: 1; }
