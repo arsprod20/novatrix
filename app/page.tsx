@@ -183,7 +183,7 @@ const parcours = [
     year: "2024",
     title: "Data Scientist",
     location: "Kane Consulting Group, Nouakchott, Mauritania",
-    description: "Data analysis, processing, and visualization using Python, R, and Excel to support strategic decision-making.",
+    description: "Data analysis, processing, and visualization using R, and Excel to support strategic decision-making.",
     icon: <ChartBarIcon className="h-6 w-6 text-cyan-400" />,
     color: "from-[#00eaff] to-cyan-300",
     type: "professional"
