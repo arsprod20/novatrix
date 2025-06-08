@@ -322,10 +322,10 @@ export default function ContactPage() {
                                 <div>
                                     <h3 className="text-xl font-bold text-foreground mb-1">Email</h3>
                                     <a
-                                        href="mailto:amadou.sow@monboreal.ca"
+                                        href="mailto:contact@amadousow.dev"
                                         className="text-foreground/80 hover:text-[#00eaff] transition-colors"
                                     >
-                                        amadou.sow@monboreal.ca
+                                        contact@amadousow.dev
                                     </a>
                                 </div>
                             </motion.div>

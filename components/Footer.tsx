@@ -87,7 +87,7 @@ export default function Footer() {
                 <Mail className="w-5 h-5 text-[#00eaff]" />
               </motion.div>
               <span className="text-foreground/90 group-hover:text-[#00eaff] transition-colors">
-                amadou.sow@monboreal.ca
+                contact@amadousow.dev
               </span>
             </Link>
           </motion.div>
