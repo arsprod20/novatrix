@@ -1,185 +1,77 @@
-'use client';
+"use client";
+import {
+  MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin
+} from "lucide-react";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
-import Link from 'next/link';
-import { ArrowUp, Github, Linkedin, Mail } from 'lucide-react';
-import { motion } from 'framer-motion';
-
-export default function Footer() {
-  const scrollToTop = () => {
-    if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
-  const navigationItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Skills', href: '/skills' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'Blog', href: '/blog' },
-  ];
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    {
-      name: 'GitHub',
-      href: 'https://github.com/arsprod2001',
-      Icon: Github,
-      ariaLabel: 'Visit my GitHub',
-    },
-    {
-      name: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/amadou-sow-8390a124a',
-      Icon: Linkedin,
-      ariaLabel: 'Visit my LinkedIn',
-    },
+    { icon: <Facebook size={20} />, label: "Facebook", href: "#" },
+    { icon: <Twitter size={20} />, label: "Twitter", href: "#" },
+    { icon: <Instagram size={20} />, label: "Instagram", href: "#" },
+    { icon: <Linkedin size={20} />, label: "LinkedIn", href: "#" }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
-  };
-
   return (
-    <footer
-      className="border-t border-foreground/10 bg-gradient-to-b from-background/70 to-background pt-20 relative overflow-hidden"
-      role="contentinfo"
-    >
-      <div className="absolute inset-0 z-0">
-        <div className="absolute -top-[100px] left-[10%] w-64 h-64 bg-[#00eaff]/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-[50%] right-[15%] w-48 h-48 bg-[#00eaff]/15 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-[20%] left-[25%] w-32 h-32 bg-[#00eaff]/20 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-16"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          <motion.div className="space-y-5" variants={itemVariants}>
-            <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-[#00eaff]">
-              Quick Contact
-            </h3>
-            <Link
-              href="mailto:contact@amadousow.com"
-              className="flex items-center gap-3 group"
-              aria-label="Envoyer un email à Amadou Sow"
-            >
-              <motion.div 
-                className="p-2 bg-foreground/5 rounded-full group-hover:bg-[#00eaff]/10 transition-colors"
-                whileHover={{ rotate: 10 }}
-              >
-                <Mail className="w-5 h-5 text-[#00eaff]" />
-              </motion.div>
-              <span className="text-foreground/90 group-hover:text-[#00eaff] transition-colors">
-                contact@amadousow.dev
-              </span>
-            </Link>
-          </motion.div>
-
-          <motion.nav 
-            aria-label="Navigation principale" 
-            className="space-y-5"
-            variants={itemVariants}
-          >
-            <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-[#00eaff]">
-              Navigation
-            </h3>
-            <ul className="space-y-3">
-              {navigationItems.map((item) => (
-                <motion.li 
-                  key={item.label}
-                  whileHover={{ x: 5 }}
-                >
-                  <Link
-                    href={item.href}
-                    className="flex items-center gap-2 text-foreground/90 hover:text-[#00eaff] transition-colors group"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00eaff] opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                    {item.label}
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.nav>
-
-          <motion.div className="space-y-5" variants={itemVariants}>
-            <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-[#00eaff]">
-              Social Media
-            </h3>
-            <div className="flex gap-4">
-              {socialLinks.map(({ name, href, Icon, ariaLabel }) => (
-                <motion.div
-                  key={name}
-                  whileHover={{ y: -5 }}
-                >
-                  <Link
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center justify-center p-3 bg-foreground/5 rounded-lg hover:bg-[#00eaff]/10 transition-colors"
-                    aria-label={ariaLabel}
-                  >
-                    <Icon 
-                      className="w-6 h-6 text-foreground/90 group-hover:text-[#00eaff] transition-colors" 
-                      aria-hidden="true" 
-                    />
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div 
-            className="space-y-5 md:text-right flex md:block flex-col items-center"
-            variants={itemVariants}
-          >
-            <motion.button
-              onClick={scrollToTop}
-              className="group inline-flex items-center gap-2 text-foreground/90 hover:text-[#00eaff] transition-colors"
-              aria-label="Retour en haut de la page"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span>Back to Top</span>
-              <motion.div
-                className="p-2 bg-foreground/5 rounded-full group-hover:bg-[#00eaff]/10 transition-colors"
-                animate={{ y: [0, -5, 0] }}
-                transition={{ repeat: Infinity, duration: 2 }}
-              >
-                <ArrowUp className="w-5 h-5" />
-              </motion.div>
-            </motion.button>
-          </motion.div>
-        </motion.div>
-
-        <motion.div 
-          className="border-t border-foreground/10 pt-8 text-center"
+    <footer className="bg-[#07005E]">
+      <div className="py-12 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+        {/* Infos Contact */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
         >
-          <p className="text-sm text-foreground/70">
-            © {new Date().getFullYear()} Amadou Sow. All rights reserved.
-          </p>
+          <h4 className="text-xl font-semibold mb-4">Nous contacter</h4>
+          <div className="space-y-4 text-cyan-300 text-sm">
+            {/*<div className="flex items-start gap-3">
+              <MapPin className="text-cyan-400" size={18} />
+              <p>Avenue Gamal Abdel Nasser, Nouakchott, Mauritanie</p>
+            </div>*/}
+            <div className="flex items-start gap-3">
+              <Phone className="text-cyan-400" size={18} />
+              <p>(+222) 36 12 34 56</p>
+            </div>
+            <div className="flex items-start gap-3">
+              <Mail className="text-cyan-400" size={18} />
+              <p>contact@novatrix.mr</p>
+            </div>
+          </div>
         </motion.div>
+
+        {/* Réseaux Sociaux */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h4 className="text-xl font-semibold mb-4">Suivez-nous</h4>
+          <div className="flex space-x-4">
+            {socialLinks.map((social, index) => (
+              <motion.a
+                key={index}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-[#000044] border border-cyan-400/20 hover:bg-cyan-800/30 transition-colors"
+                aria-label={social.label}
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {social.icon}
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      <div className="border-t border-cyan-400/10 py-6 text-center text-cyan-300/70 text-sm">
+        &copy; {currentYear} Novatrix. Tous droits réservés.
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

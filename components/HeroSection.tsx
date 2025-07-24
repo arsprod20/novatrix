@@ -1,0 +1,191 @@
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import { MessageCircle, ArrowRight, Zap, Star } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
+const HeroSection = () => {
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const bgX = useTransform(x, [-1, 1], [5, -5]);
+    const bgY = useTransform(y, [-1, 1], [5, -5]);
+
+    return (
+        <motion.section
+            className="relative min-h-screen flex flex-col items-center justify-center pt-25 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+            initial="hidden"
+            animate="visible"
+            onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                x.set((e.clientX - rect.left) / rect.width - 0.5);
+                y.set((e.clientY - rect.top) / rect.height - 0.5);
+            }}
+
+        >
+            <Image
+                src="/hero-bg.png"
+                alt="Fond technologique"
+                fill
+                className="object-cover opacity-30 z-0 pointer-events-none scale-x-125"
+                style={{ mixBlendMode: 'screen' }}
+            />
+
+            <motion.div
+                className="absolute inset-0 z-0"
+                style={{ x: bgX, y: bgY }}
+            >
+                <div className="absolute inset-0 opacity-80" />
+
+                {/* Éléments flottants */}
+                {[...Array(12)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute rounded-full"
+                        style={{
+                            top: `${Math.random() * 100}%`,
+                            left: `${Math.random() * 100}%`,
+                            width: `${Math.random() * 10 + 5}px`,
+                            height: `${Math.random() * 10 + 5}px`,
+                            background: i % 3 === 0 ? '#03eeff' : i % 3 === 1 ? '#2139fb' : '#ffffff',
+                        }}
+                        animate={{
+                            y: [0, -20, 0],
+                            x: [0, Math.random() > 0.5 ? -15 : 15, 0],
+                            opacity: [0.6, 1, 0.6],
+                        }}
+                        transition={{
+                            duration: Math.random() * 5 + 5,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                    />
+                ))}
+            </motion.div>
+
+            {/* Logo Novatrix centré en haut */}
+            <motion.div
+                className="relative z-20 mb-16 flex flex-col items-center"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+            >
+
+                <Image
+                    src="/logo.png" // remplacez par le chemin réel de votre logo
+                    alt="Logo Novatrix"
+                    width={300} // 24 * 4 = 96px
+                    height={300}
+                    className="object-cover"
+                    priority
+                />
+
+
+                {/* Animation autour du logo */}
+                <motion.div
+                    className="absolute inset-0 rounded-full border-2 border-neon-cyan opacity-30"
+                    animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.3, 0.5, 0.3]
+                    }}
+                    transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }}
+                />
+            </motion.div>
+
+            {/* Contenu principal */}
+            <div className="container mx-auto relative z-10 text-center max-w-4xl">
+                {/* Titre avec animation de lettres */}
+                <motion.h1
+                    className="text-4xl md:text-6xl font-bold text-white"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                        textShadow: "0 0 10px rgba(3, 238, 255, 0.8), 0 0 20px rgba(33, 57, 251, 0.6)"
+                    }}
+                >
+                    Innovation Numérique Excellence Créative
+                </motion.h1>
+
+                {/* Description avec animation */}
+                <motion.p
+                    className="text-lg md:text-xl text-cyan-200 mb-10 max-w-2xl mx-auto"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                >
+                    Novatrix propulse votre présence digitale avec des solutions sur mesure alliant technologie de pointe et design d&apos;exception
+                </motion.p>
+
+                {/* Boutons avec animations */}
+                <motion.div
+                    className="flex flex-col sm:flex-row justify-center gap-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6, duration: 0.6 }}
+                >
+                    <Link href="/contact">
+                        <motion.button
+                            className="cta-button px-8 py-4 text-lg font-semibold flex items-center justify-center gap-2"
+                            whileHover={{
+                                scale: 1.05,
+                                boxShadow: "0 0 20px rgba(3, 238, 255, 0.5)"
+                            }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.7 }}
+                        >
+                            <MessageCircle className="text-white" size={20} />
+                            <span>Contactez-nous</span>
+                            <motion.div
+                                animate={{ x: [0, 5, 0] }}
+                                transition={{ repeat: Infinity, duration: 1.5 }}
+                            >
+                                <ArrowRight size={18} />
+                            </motion.div>
+                        </motion.button>
+                    </Link>
+
+                    <Link href="/services">
+                        <motion.button
+                            className="px-8 py-4 text-lg font-semibold border border-neon-cyan rounded-lg text-neon-cyan hover:bg-cyan-900/20 transition-all flex items-center justify-center gap-2"
+                            whileHover={{
+                                scale: 1.05,
+                                backgroundColor: "rgba(3, 238, 255, 0.1)"
+                            }}
+                            whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.8 }}
+                        >
+                            <Zap className="text-cyan-300" size={20} fill="currentColor" />
+                            <span>Nos Services</span>
+                        </motion.button>
+                    </Link>
+                </motion.div>
+            </div>
+
+            {/* Éléments décoratifs animés */}
+            <motion.div
+                className="absolute bottom-20 left-10 opacity-70"
+                animate={{ y: [0, -15, 0] }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            >
+                <Star className="text-cyan-300" size={24} fill="currentColor" />
+            </motion.div>
+
+            <motion.div
+                className="absolute top-1/4 right-16 opacity-60"
+                animate={{ y: [0, 15, 0] }}
+                transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.5 }}
+            >
+                <Star className="text-blue-400" size={20} fill="currentColor" />
+            </motion.div>
+        </motion.section>
+    );
+};
+
+export default HeroSection;
