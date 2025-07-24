@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, MessageCircle } from 'lucide-react';
 import Image from "next/image";
+import Link from 'next/link';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -70,6 +71,7 @@ const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
+          <Link href = '/'>
           <motion.div
             className="flex items-center"
             whileHover={{ scale: 1.05 }}
@@ -82,6 +84,7 @@ const Header = () => {
               className="object-contain"
             />
           </motion.div>
+          </Link>
 
           <nav className="hidden md:flex items-center space-x-1">
             <motion.ul
@@ -187,15 +190,17 @@ const Header = () => {
         )}
       </AnimatePresence>
 
-      {isScrolled && (
-        <motion.div
-          className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-neon-cyan via-blue-500 to-purple-500"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.5 }}
-        />
-      )}
-    </motion.header>
+      {
+    isScrolled && (
+      <motion.div
+        className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-neon-cyan via-blue-500 to-purple-500"
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 0.5 }}
+      />
+    )
+  }
+    </motion.header >
   );
 };
 

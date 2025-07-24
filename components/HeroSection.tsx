@@ -2,12 +2,30 @@ import { motion, useMotionValue, useTransform } from "framer-motion";
 import { MessageCircle, ArrowRight, Zap, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const HeroSection = () => {
+    const [isClient, setIsClient] = useState(false);
     const x = useMotionValue(0);
     const y = useMotionValue(0);
     const bgX = useTransform(x, [-1, 1], [5, -5]);
     const bgY = useTransform(y, [-1, 1], [5, -5]);
+
+    // Solution : On s'assure que les éléments dynamiques ne sont rendus que côté client
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    // Génération déterministe des positions pour éviter les différences SSR/CSR
+   const generateDeterministicValues = (index: number) => {
+    const seed = 12345 + index;
+    return {
+        top: `${Math.abs(Math.sin(seed * 2.1) * 100)}%`,
+        left: `${Math.abs(Math.cos(seed * 1.7) * 100)}%`,
+        width: `${Math.abs(Math.sin(seed) * 10 + 5)}px`,
+        height: `${Math.abs(Math.cos(seed * 0.9) * 10 + 5)}px`,
+    };
+};
 
     return (
         <motion.section
@@ -19,7 +37,6 @@ const HeroSection = () => {
                 x.set((e.clientX - rect.left) / rect.width - 0.5);
                 y.set((e.clientY - rect.top) / rect.height - 0.5);
             }}
-
         >
             <Image
                 src="/hero-bg.png"
@@ -27,6 +44,7 @@ const HeroSection = () => {
                 fill
                 className="object-cover opacity-30 z-0 pointer-events-none scale-x-125"
                 style={{ mixBlendMode: 'screen' }}
+                priority
             />
 
             <motion.div
@@ -35,16 +53,13 @@ const HeroSection = () => {
             >
                 <div className="absolute inset-0 opacity-80" />
 
-                {/* Éléments flottants */}
-                {[...Array(12)].map((_, i) => (
+                {/* Éléments flottants - rendu uniquement côté client */}
+                {isClient && [...Array(12)].map((_, i) => (
                     <motion.div
                         key={i}
                         className="absolute rounded-full"
                         style={{
-                            top: `${Math.random() * 100}%`,
-                            left: `${Math.random() * 100}%`,
-                            width: `${Math.random() * 10 + 5}px`,
-                            height: `${Math.random() * 10 + 5}px`,
+                            ...generateDeterministicValues(i),
                             background: i % 3 === 0 ? '#03eeff' : i % 3 === 1 ? '#2139fb' : '#ffffff',
                         }}
                         animate={{
@@ -68,7 +83,6 @@ const HeroSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
             >
-
                 <Image
                     src="/logo.png" 
                     alt="Logo Novatrix"
@@ -77,7 +91,6 @@ const HeroSection = () => {
                     className="object-cover"
                     priority
                 />
-
 
                 <motion.div
                     className="absolute inset-0 rounded-full border-2 border-neon-cyan opacity-30"

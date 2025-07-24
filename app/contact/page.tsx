@@ -90,7 +90,7 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen  text-white overflow-hidden">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
+      <section className="relative py-16 md:py-20 overflow-hidden">
 
 
         <div className="container mx-auto px-4 relative z-10">
@@ -361,9 +361,9 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold mb-2">Email</h3>
-                      <p className="text-cyan-200">Support: support@novatrix.mr</p>
-                      <p className="text-cyan-200">Commercial: contact@novatrix.mr</p>
-                      <p className="text-cyan-200">Carrières: recrutement@novatrix.mr</p>
+                      <p className="text-cyan-200">Support: support@novatrix.dev</p>
+                      <p className="text-cyan-200">Commercial: contact@novatrix.dev</p>
+                      <p className="text-cyan-200">Carrières: recrutement@novatrix.dev</p>
                     </div>
                   </div>
 

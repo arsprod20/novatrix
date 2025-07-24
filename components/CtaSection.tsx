@@ -1,7 +1,31 @@
 import { motion } from "framer-motion";
 import { Mail, ArrowRight, Zap, MessageCircle, Star } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const CtaSection = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Fonction pour générer des valeurs déterministes basées sur l'index
+const generateDeterministicValues = (index: number) => {
+  const seed = 54321 * (index + 1);
+  const top = Math.abs(Math.sin(seed * 0.7) * 100);
+  const left = Math.abs(Math.cos(seed * 1.3) * 100);
+  const width = Math.abs(Math.sin(seed) * 4 + 4);
+  const height = Math.abs(Math.cos(seed * 0.5) * 4 + 4);
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    width: `${width}px`,
+    height: `${height}px`,
+  };
+};
+
+
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -45,16 +69,12 @@ const CtaSection = () => {
             }}
           />
           
-          {[...Array(5)].map((_, i) => (
+          {/* Éléments flottants - rendu uniquement côté client */}
+          {isClient && [...Array(5)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute rounded-full bg-white"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                width: `${Math.random() * 6 + 2}px`,
-                height: `${Math.random() * 6 + 2}px`,
-              }}
+              style={generateDeterministicValues(i)}
               animate={{
                 opacity: [0, 1, 0],
                 scale: [0.5, 1.2, 0.5]

@@ -148,23 +148,36 @@ const AboutPage = () => {
         </div>
       </section>*/}
 
-      <section className="relative py-20 md:py-20 overflow-hidden">
-        <div className="absolute inset-0 opacity-90" />
+      {/* Hero Section - À Propos */}
+<section className="relative py-16 md:py-20 overflow-hidden text-white">
+        {/* Background Overlay (optionnel : image floutée ou vidéo) */}
+        <div className="absolute inset-0 opacity-20 bg-[url('/background-pattern.svg')] bg-cover bg-center" />
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-3xl mx-auto text-center">
             <motion.h1
-              className="text-4xl md:text-6xl font-bold mb-6"
-              initial={{ opacity: 0, y: 20 }}
+              className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              A <span className="text-cyan-400">Propos</span>
+              À <span className="text-cyan-400">Propos</span> de Nous
             </motion.h1>
 
+            <motion.p
+              className="text-lg md:text-xl text-cyan-100 mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+              Nous sommes une équipe passionnée par la technologie, le design et {"l'impact numérique"} en Mauritanie et ailleurs.
+            </motion.p>
+
+           
           </div>
         </div>
       </section>
+
 
       {/* Notre Histoire */}
       <section className="py-20 ">
@@ -200,28 +213,28 @@ const AboutPage = () => {
             </motion.div>
 
             <motion.div
-              className="md:w-1/2"
+              className="w-full md:w-1/2"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl border-2 border-cyan-400/30">
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl border-2 border-cyan-400/30">
                 <Image
-                  src="/notre-vision.png" 
+                  src="/notre-vision.png"
                   alt="Notre engagement numérique"
-                  fill 
+                  fill
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#000066] via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent">
                   <p className="text-lg italic text-cyan-200">
-                    {"Chaque projet renforce notre engagement pour la croissance numérique mauritanienne"}
+                    Chaque projet renforce notre engagement pour la croissance numérique mauritanienne
                   </p>
                 </div>
               </div>
-
             </motion.div>
+
           </div>
         </div>
       </section>
@@ -456,29 +469,25 @@ const AboutPage = () => {
             </motion.div>
 
             <motion.div
-              className="md:w-1/2"
+              className="w-full md:w-1/2"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="relative aspect-square rounded-xl overflow-hidden shadow-2xl border-2 border-cyan-400/30">
-                
+              <div className="relative w-full aspect-square rounded-xl overflow-hidden shadow-2xl border-2 border-cyan-400/30">
                 <Image
-                  src='/notre-engagement.png'
+                  src="/notre-engagement.png"
                   alt="Engagement Illustration"
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-xl"
-                  priority={true}
+                  fill // équivalent moderne de layout="fill"
+                  className="object-cover rounded-xl"
+                  priority
                 />
 
-                
                 <div className="absolute inset-0 bg-gradient-to-t from-[#000066cc] via-transparent to-transparent rounded-xl" />
-
-
               </div>
             </motion.div>
+
           </div>
         </div>
       </section>
