@@ -3,8 +3,8 @@ import React from 'react';
 import PresentationSection from "@/components/PresentationSection"
 import ServicesSection from "@/components/ServicesSection"
 import ValuesSection from "@/components/ValuesSection"
-import WhyChooseUsSection from "@/components/WhyChooseUsSection"
-import TrustedClientsSection from "@/components/TrustedClientsSection"
+//import WhyChooseUsSection from "@/components/WhyChooseUsSection"
+//import TrustedClientsSection from "@/components/TrustedClientsSection"
 import CtaSection from "@/components/CtaSection"
 import HeroSection from "@/components/HeroSection"
 

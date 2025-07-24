@@ -4,7 +4,6 @@ import { Mail, ArrowRight, Zap, MessageCircle, Star } from "lucide-react";
 const CtaSection = () => {
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Éléments décoratifs de fond */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-[100px] animate-pulse"></div>
         <div className="absolute bottom-1/3 right-1/3 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] animate-pulse delay-1000"></div>
@@ -19,7 +18,6 @@ const CtaSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          {/* Éléments décoratifs animés */}
           <motion.div 
             className="absolute -top-20 -right-20 w-40 h-40 bg-neon-cyan rounded-full opacity-20 blur-3xl"
             animate={{
@@ -47,7 +45,6 @@ const CtaSection = () => {
             }}
           />
           
-          {/* Étoiles animées */}
           {[...Array(5)].map((_, i) => (
             <motion.div
               key={i}
@@ -89,7 +86,7 @@ const CtaSection = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
-              Contactez-nous dès aujourd'hui pour discuter de votre projet et découvrir comment nous pouvons propulser votre présence digitale
+              Contactez-nous dès {"aujourd'hui"} pour discuter de votre projet et découvrir comment nous pouvons propulser votre présence digitale
             </motion.p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-6">
@@ -135,7 +132,6 @@ const CtaSection = () => {
             </div>
           </div>
           
-          {/* Éléments décoratifs flottants */}
           <motion.div
             className="absolute top-8 left-8 opacity-70"
             animate={{ y: [0, -15, 0] }}
@@ -154,7 +150,6 @@ const CtaSection = () => {
         </motion.div>
       </div>
       
-      {/* Éléments décoratifs supplémentaires */}
       <div className="absolute bottom-10 left-1/4 w-16 h-16 bg-gradient-to-r from-neon-cyan to-blue-500 rounded-full opacity-10 blur-xl animate-pulse"></div>
       <div className="absolute top-10 right-1/4 w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-10 blur-xl animate-pulse delay-500"></div>
     </section>

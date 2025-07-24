@@ -37,7 +37,6 @@ const TrustedClientsSection = () => {
 
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Éléments décoratifs de fond */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-[100px]"></div>
         <div className="absolute bottom-1/3 right-1/3 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px]"></div>
@@ -63,7 +62,6 @@ const TrustedClientsSection = () => {
           </p>
         </motion.div>
 
-        {/* Logo Grid avec animation */}
         <motion.div 
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-24"
           initial="hidden"
@@ -115,7 +113,6 @@ const TrustedClientsSection = () => {
           ))}
         </motion.div>
 
-        {/* Carrousel de témoignages */}
         <motion.div 
           className="bg-gradient-to-r from-cyan-900/20 to-blue-900/20 backdrop-blur-sm rounded-3xl border border-cyan-900/30 p-10 mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -158,7 +155,6 @@ const TrustedClientsSection = () => {
               </motion.div>
             </div>
             
-            {/* Contrôles du carrousel */}
             <div className="absolute top-1/2 left-0 right-0 flex justify-between px-4">
               <button className="p-2 rounded-full bg-deep-space/50 border border-cyan-900/30 text-neon-cyan hover:bg-cyan-900/20 transition-all">
                 <ChevronLeft size={24} />

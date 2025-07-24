@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
-import { Rocket, Target, Users, Lightbulb, Globe, BarChart2 } from "lucide-react";
+import { Rocket, Target, Users, Lightbulb, Globe} from "lucide-react";
 
 const PresentationSection = () => {
-  // Variantes pour les animations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -44,7 +43,7 @@ const PresentationSection = () => {
               className="text-4xl md:text-5xl font-bold text-white mb-6"
               variants={itemVariants}
             >
-              Novatrix - <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-blue-400">L'Excellence Numérique</span> Mauritanienne
+              Novatrix - <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-blue-400">{"L'Excellence"} Numérique</span> Mauritanienne
             </motion.h2>
           </motion.div>
 
@@ -52,7 +51,7 @@ const PresentationSection = () => {
             className="text-cyan-100 text-lg leading-relaxed"
             variants={itemVariants}
           >
-            Fondée par une équipe de jeunes professionnels mauritaniens passionnés, Novatrix se positionne comme un acteur majeur dans deux secteurs stratégiques : les technologies de l'information et le design graphique.
+            Fondée par une équipe de jeunes professionnels mauritaniens passionnés, Novatrix se positionne comme un acteur majeur dans deux secteurs stratégiques : les technologies de {"l'information"} et le design graphique.
           </motion.p>
 
           <motion.p
@@ -94,7 +93,7 @@ const PresentationSection = () => {
                 <h3 className="text-xl font-bold text-white">Engagement</h3>
               </div>
               <p className="text-cyan-100">
-                Chaque projet contribue au développement du secteur tech national et à la création d'opportunités pour les jeunes talents mauritaniens.
+                Chaque projet contribue au développement du secteur tech national et à la création {"d'opportunités"} pour les jeunes talents mauritaniens.
               </p>
             </motion.div>
           </motion.div>
@@ -155,7 +154,6 @@ const PresentationSection = () => {
                     </div>
                   </div>
 
-                  {/* Éléments décoratifs */}
                   <div className="absolute -top-4 -left-4 w-16 h-16 rounded-full bg-neon-cyan/20 blur-xl animate-pulse"></div>
                   <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full bg-blue-500/20 blur-xl animate-pulse"></div>
 
@@ -169,7 +167,6 @@ const PresentationSection = () => {
           <div className="absolute -top-8 -right-8 w-32 h-32 bg-neon-cyan/10 rounded-full blur-2xl animate-pulse"></div>
           <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl animate-pulse"></div>
 
-          {/* Éléments animés flottants */}
           <motion.div
             className="absolute top-1/4 -left-10 w-8 h-8 bg-gradient-to-r from-neon-cyan to-blue-500 rounded-full"
             animate={{

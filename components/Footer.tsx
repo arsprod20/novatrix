@@ -1,9 +1,9 @@
 "use client";
 import {
-  MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin
+  Phone, Mail, Facebook, Twitter, Instagram, Linkedin
 } from "lucide-react";
 import { motion } from "framer-motion";
-import Link from "next/link";
+//import Link from "next/link";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -18,7 +18,6 @@ const Footer = () => {
   return (
     <footer className="bg-[#07005E]">
       <div className="py-12 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
-        {/* Infos Contact */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -36,7 +35,7 @@ const Footer = () => {
             </div>
             <div className="flex items-start gap-3">
               <Mail className="text-cyan-400" size={18} />
-              <p>contact@novatrix.mr</p>
+              <p>contact@novatrix.dev</p>
             </div>
           </div>
         </motion.div>

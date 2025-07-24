@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Novatrix",
-  description: "Créez, gérez et réservez des événements en ligne",
+  description: "Novatrix - Mauritania",
 };
 
 export default function RootLayout({

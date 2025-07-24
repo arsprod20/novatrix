@@ -61,7 +61,6 @@ const ValuesSection = () => {
 
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-deep-space">
-      {/* Fond décoratif */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute top-20 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-[100px]"></div>
         <div className="absolute bottom-40 right-1/3 w-80 h-80 bg-purple-500/10 rounded-full blur-[120px]"></div>
@@ -86,7 +85,6 @@ const ValuesSection = () => {
           </p>
         </motion.div>
 
-        {/* Grille de valeurs */}
         <motion.div
           className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
           variants={containerVariants}
@@ -110,7 +108,6 @@ const ValuesSection = () => {
                         <div className="text-cyan-200 mt-2">{value.desc}</div>
                       </div>
 
-                      {/* Éléments décoratifs */}
                       <div className="absolute -top-4 -left-4 w-16 h-16 rounded-full bg-neon-cyan/20 blur-xl animate-pulse"></div>
                       <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full bg-blue-500/20 blur-xl animate-pulse"></div>
 
@@ -121,11 +118,9 @@ const ValuesSection = () => {
                 </div>
               </div>
 
-              {/* Cercles d’ambiance autour */}
               <div className="absolute -top-8 -right-8 w-32 h-32 bg-neon-cyan/10 rounded-full blur-2xl animate-pulse"></div>
               <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl animate-pulse"></div>
 
-              {/* Éléments flottants animés */}
               <motion.div
                 className="absolute top-1/4 -left-10 w-8 h-8 bg-gradient-to-r from-neon-cyan to-blue-500 rounded-full"
                 animate={{ y: [0, -20, 0] }}
@@ -149,7 +144,6 @@ const ValuesSection = () => {
           ))}
         </motion.div>
 
-        {/* Citation */}
         <motion.div
           className="mt-12 max-w-3xl mx-auto text-center relative"
           initial={{ opacity: 0 }}
@@ -159,9 +153,9 @@ const ValuesSection = () => {
         >
           <div className="text-5xl text-neon-cyan absolute top-0 left-0 opacity-20">“</div>
           <p className="text-xl text-white italic relative px-10">
-            "Nous ne faisons pas que coder. Nous construisons l’avenir digital de la Mauritanie — une solution à la fois."
+            `{"Nous ne faisons pas que coder. Nous construisons l’avenir digital de la Mauritanie — une solution à la fois."}`
           </p>
-          <div className="mt-4 text-cyan-200 font-semibold">L'équipe Novatrix</div>
+          <div className="mt-4 text-cyan-200 font-semibold">{"L'équipe Novatrix"}</div>
           <div className="absolute bottom-0 right-0 text-5xl text-neon-cyan opacity-20 rotate-180">“</div>
         </motion.div>
       </div>

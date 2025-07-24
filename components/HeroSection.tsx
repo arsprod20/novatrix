@@ -70,16 +70,15 @@ const HeroSection = () => {
             >
 
                 <Image
-                    src="/logo.png" // remplacez par le chemin réel de votre logo
+                    src="/logo.png" 
                     alt="Logo Novatrix"
-                    width={300} // 24 * 4 = 96px
+                    width={300} 
                     height={300}
                     className="object-cover"
                     priority
                 />
 
 
-                {/* Animation autour du logo */}
                 <motion.div
                     className="absolute inset-0 rounded-full border-2 border-neon-cyan opacity-30"
                     animate={{
@@ -94,9 +93,7 @@ const HeroSection = () => {
                 />
             </motion.div>
 
-            {/* Contenu principal */}
             <div className="container mx-auto relative z-10 text-center max-w-4xl">
-                {/* Titre avec animation de lettres */}
                 <motion.h1
                     className="text-4xl md:text-6xl font-bold text-white"
                     initial={{ opacity: 0, y: 20 }}
@@ -109,7 +106,6 @@ const HeroSection = () => {
                     Innovation Numérique Excellence Créative
                 </motion.h1>
 
-                {/* Description avec animation */}
                 <motion.p
                     className="text-lg md:text-xl text-cyan-200 mb-10 max-w-2xl mx-auto"
                     initial={{ opacity: 0, y: 20 }}
@@ -119,7 +115,6 @@ const HeroSection = () => {
                     Novatrix propulse votre présence digitale avec des solutions sur mesure alliant technologie de pointe et design d&apos;exception
                 </motion.p>
 
-                {/* Boutons avec animations */}
                 <motion.div
                     className="flex flex-col sm:flex-row justify-center gap-4"
                     initial={{ opacity: 0, y: 20 }}
@@ -168,7 +163,6 @@ const HeroSection = () => {
                 </motion.div>
             </div>
 
-            {/* Éléments décoratifs animés */}
             <motion.div
                 className="absolute bottom-20 left-10 opacity-70"
                 animate={{ y: [0, -15, 0] }}

@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
-import { 
-  MapPin, Settings, Palette, Zap, 
-  Shield, Users, BarChart, CheckCircle,
+import { Settings, Palette, Zap, Users, CheckCircle,
   Sparkles, Rocket, Target, Globe
 } from "lucide-react";
 
@@ -38,7 +36,6 @@ const WhyChooseUsSection = () => {
     { value: "100%", label: "Engagement local", icon: <Globe size={20} /> }
   ];
 
-  // Variantes d'animation
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -68,7 +65,6 @@ const WhyChooseUsSection = () => {
 
   return (
     <section className="py-24  px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Éléments décoratifs de fond */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-[100px]"></div>
         <div className="absolute bottom-1/3 right-1/3 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px]"></div>
@@ -90,7 +86,7 @@ const WhyChooseUsSection = () => {
             Pourquoi Choisir <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-blue-400">Novatrix</span>
           </h2>
           <p className="text-cyan-200 max-w-2xl mx-auto text-lg">
-            Découvrez ce qui nous distingue dans l'écosystème numérique mauritanien
+            {"Découvrez ce qui nous distingue dans l'écosystème numérique mauritanien"}
           </p>
         </motion.div>
 
@@ -183,7 +179,7 @@ const WhyChooseUsSection = () => {
             
             <div className="flex-1">
               <p className="text-xl text-white italic mb-6">
-                "Novatrix a transformé notre présence digitale avec une approche sur-mesure qui comprend parfaitement les spécificités du marché mauritanien. Leur réactivité et leur expertise technique sont exceptionnelles."
+                {"Novatrix a transformé notre présence digitale avec une approche sur-mesure qui comprend parfaitement les spécificités du marché mauritanien. Leur réactivité et leur expertise technique sont exceptionnelles."}
               </p>
               <div className="text-cyan-200 font-semibold">Mohamed Ahmed</div>
               <div className="text-cyan-300 text-sm">Directeur Marketing, Entreprise XYZ</div>

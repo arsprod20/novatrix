@@ -1,11 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { 
-  Mail, Phone, MapPin, Clock, MessageSquare, 
-  User, Briefcase, Globe, Send, CheckCircle, 
-  Facebook, Twitter, Instagram, Linkedin, Youtube,
-  ArrowRight, HelpCircle, Headphones, Calendar
+import {
+  Mail, Phone, MessageSquare,
+  User, Briefcase, Globe, Send, CheckCircle,
+  Facebook, Twitter, Instagram, Linkedin, Youtube, Headphones
 } from "lucide-react";
 
 const ContactPage = () => {
@@ -17,11 +16,11 @@ const ContactPage = () => {
     service: "",
     message: ""
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [activeTab, setActiveTab] = useState("support");
-  
+
   const services = [
     "Développement Web",
     "Applications Mobiles",
@@ -32,27 +31,9 @@ const ContactPage = () => {
     "Sécurité Informatique",
     "Autre"
   ];
-  
-  const faqItems = [
-    {
-      question: "Quels sont vos horaires d'ouverture ?",
-      answer: "Notre équipe est disponible du lundi au vendredi de 8h à 18h, et le samedi de 9h à 13h. Vous pouvez nous contacter par téléphone, email ou via notre chat en direct pendant ces horaires."
-    },
-    {
-      question: "Combien de temps pour une réponse à mon message ?",
-      answer: "Nous nous engageons à répondre à toutes les demandes dans un délai maximum de 24 heures ouvrées. Pour les demandes urgentes, privilégiez notre numéro de téléphone ou le chat en direct."
-    },
-    {
-      question: "Proposez-vous des consultations gratuites ?",
-      answer: "Oui, nous offrons une première consultation gratuite de 30 minutes pour discuter de votre projet et évaluer vos besoins. Vous pouvez prendre rendez-vous via notre calendrier en ligne."
-    },
-    {
-      question: "Quelle est votre zone d'intervention ?",
-      answer: "Basés à Nouakchott, nous intervenons dans toute la Mauritanie. Pour les projets à l'international, nous travaillons principalement à distance avec des réunions en visioconférence."
-    }
-  ];
-  
-  const supportTeam = [
+
+  {/**
+   const supportTeam = [
     {
       name: "Mohamed Ould Ahmed",
       role: "Support Technique",
@@ -73,15 +54,20 @@ const ContactPage = () => {
     }
   ];
   
-  const handleChange = (e) => {
+  */}
+
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  
-  const handleSubmit = (e) => {
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulation d'envoi de formulaire
     setTimeout(() => {
       setIsSubmitting(false);
@@ -94,27 +80,22 @@ const ContactPage = () => {
         service: "",
         message: ""
       });
-      
+
       // Réinitialiser le message de succès après 5 secondes
       setTimeout(() => setSubmitSuccess(false), 5000);
     }, 1500);
   };
-  
+
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#000033] to-[#000011] text-white overflow-hidden">
+    <div className="min-h-screen  text-white overflow-hidden">
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-full h-full">
-            <div className="absolute top-20 right-10 w-64 h-64 bg-cyan-500 rounded-full mix-blend-soft-light opacity-20 animate-blob" />
-            <div className="absolute top-40 right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-soft-light opacity-15 animate-blob animation-delay-2000" />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#000066] to-[#003366] opacity-90" />
-        </div>
-        
+
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <motion.h1 
+            <motion.h1
               className="text-4xl md:text-6xl font-bold mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -122,8 +103,8 @@ const ContactPage = () => {
             >
               Contactez <span className="text-cyan-400">Novatrix</span>
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               className="text-xl text-cyan-200 mb-10 max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -135,27 +116,26 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Navigation par Type de Contact */}
-      <section className="py-12 bg-[#000044]">
+      <section className="py-12 ">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-            <button 
+            <button
               className={`px-6 py-3 rounded-full font-medium transition-all flex items-center ${activeTab === "support" ? "bg-cyan-600 text-white" : "bg-[#000066] text-cyan-200 hover:bg-cyan-900"}`}
               onClick={() => setActiveTab("support")}
             >
               <Headphones className="mr-2" size={18} />
               Support Client
             </button>
-            
-            <button 
+
+            <button
               className={`px-6 py-3 rounded-full font-medium transition-all flex items-center ${activeTab === "commercial" ? "bg-cyan-600 text-white" : "bg-[#000066] text-cyan-200 hover:bg-cyan-900"}`}
               onClick={() => setActiveTab("commercial")}
             >
               <Briefcase className="mr-2" size={18} />
               Demande Commerciale
             </button>
-            
-            <button 
+
+            <button
               className={`px-6 py-3 rounded-full font-medium transition-all flex items-center ${activeTab === "partnership" ? "bg-cyan-600 text-white" : "bg-[#000066] text-cyan-200 hover:bg-cyan-900"}`}
               onClick={() => setActiveTab("partnership")}
             >
@@ -171,7 +151,7 @@ const ContactPage = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-12">
             {/* Formulaire de Contact */}
-            <motion.div 
+            <motion.div
               className="lg:w-1/2"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -180,18 +160,18 @@ const ContactPage = () => {
             >
               <div className="bg-gradient-to-br from-[#000044] to-[#000066] rounded-xl p-8 border border-cyan-400/20">
                 <h2 className="text-2xl md:text-3xl font-bold mb-2">
-                  {activeTab === "support" 
-                    ? "Demande de Support" 
-                    : activeTab === "commercial" 
-                    ? "Devis Commercial" 
-                    : "Demande de Partenariat"}
+                  {activeTab === "support"
+                    ? "Demande de Support"
+                    : activeTab === "commercial"
+                      ? "Devis Commercial"
+                      : "Demande de Partenariat"}
                 </h2>
                 <p className="text-cyan-300 mb-8">
                   Remplissez le formulaire et notre équipe vous répondra dans les plus brefs délais
                 </p>
-                
+
                 {submitSuccess && (
-                  <motion.div 
+                  <motion.div
                     className="mb-6 p-4 bg-green-900/30 border border-green-500 rounded-lg flex items-start"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -205,7 +185,7 @@ const ContactPage = () => {
                     </div>
                   </motion.div>
                 )}
-                
+
                 <form onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -223,7 +203,7 @@ const ContactPage = () => {
                         />
                       </div>
                     </div>
-                    
+
                     <div>
                       <label className="block text-cyan-300 mb-2">Adresse email *</label>
                       <div className="relative">
@@ -239,7 +219,7 @@ const ContactPage = () => {
                         />
                       </div>
                     </div>
-                    
+
                     <div>
                       <label className="block text-cyan-300 mb-2">Téléphone</label>
                       <div className="relative">
@@ -254,7 +234,7 @@ const ContactPage = () => {
                         />
                       </div>
                     </div>
-                    
+
                     <div>
                       <label className="block text-cyan-300 mb-2">Entreprise / Organisation</label>
                       <div className="relative">
@@ -270,14 +250,14 @@ const ContactPage = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="mt-6">
                     <label className="block text-cyan-300 mb-2">
-                      {activeTab === "support" 
-                        ? "Type de support demandé *" 
-                        : activeTab === "commercial" 
-                        ? "Service intéressé *" 
-                        : "Type de partenariat *"}
+                      {activeTab === "support"
+                        ? "Type de support demandé *"
+                        : activeTab === "commercial"
+                          ? "Service intéressé *"
+                          : "Type de partenariat *"}
                     </label>
                     <div className="relative">
                       <select
@@ -299,7 +279,7 @@ const ContactPage = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="mt-6">
                     <label className="block text-cyan-300 mb-2">Votre message *</label>
                     <div className="relative">
@@ -315,16 +295,15 @@ const ContactPage = () => {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="mt-8">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full py-4 rounded-lg font-semibold flex items-center justify-center transition-all ${
-                        isSubmitting
-                          ? "bg-cyan-800 cursor-not-allowed"
-                          : "bg-cyan-600 hover:bg-cyan-700"
-                      }`}
+                      className={`w-full py-4 rounded-lg font-semibold flex items-center justify-center transition-all ${isSubmitting
+                        ? "bg-cyan-800 cursor-not-allowed"
+                        : "bg-cyan-600 hover:bg-cyan-700"
+                        }`}
                     >
                       {isSubmitting ? (
                         <>
@@ -344,9 +323,9 @@ const ContactPage = () => {
                 </form>
               </div>
             </motion.div>
-            
+
             {/* Informations de Contact */}
-            <motion.div 
+            <motion.div
               className="lg:w-1/2"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -355,25 +334,10 @@ const ContactPage = () => {
             >
               <div className="bg-gradient-to-br from-[#000044] to-[#000066] rounded-xl p-8 border border-cyan-400/20 h-full">
                 <h2 className="text-2xl md:text-3xl font-bold mb-8">Nos Coordonnées</h2>
-                
+
                 <div className="space-y-6">
-                  {/* Adresse */}
-                  <div className="flex items-start">
-                    <div className="bg-cyan-900/30 p-3 rounded-lg mr-4">
-                      <MapPin className="text-cyan-400" size={24} />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold mb-2">Adresse</h3>
-                      <p className="text-cyan-200">Avenue Gamal Abdel Nasser</p>
-                      <p className="text-cyan-200">Immeuble El Nasr, 3ème étage</p>
-                      <p className="text-cyan-200">Nouakchott, Mauritanie</p>
-                      
-                      <button className="mt-3 text-cyan-400 hover:text-cyan-300 font-medium flex items-center">
-                        Voir sur la carte <ArrowRight className="ml-2" size={16} />
-                      </button>
-                    </div>
-                  </div>
-                  
+
+
                   {/* Contact */}
                   <div className="flex items-start">
                     <div className="bg-cyan-900/30 p-3 rounded-lg mr-4">
@@ -383,13 +347,13 @@ const ContactPage = () => {
                       <h3 className="text-lg font-bold mb-2">Téléphone & WhatsApp</h3>
                       <p className="text-cyan-200">Support: (+222) 36 12 34 56</p>
                       <p className="text-cyan-200">Commercial: (+222) 36 45 67 89</p>
-                      
+
                       <button className="mt-3 bg-cyan-600 hover:bg-cyan-700 px-4 py-2 rounded-lg font-medium flex items-center">
                         Appeler maintenant
                       </button>
                     </div>
                   </div>
-                  
+
                   {/* Email */}
                   <div className="flex items-start">
                     <div className="bg-cyan-900/30 p-3 rounded-lg mr-4">
@@ -402,20 +366,9 @@ const ContactPage = () => {
                       <p className="text-cyan-200">Carrières: recrutement@novatrix.mr</p>
                     </div>
                   </div>
-                  
-                  {/* Horaires */}
-                  <div className="flex items-start">
-                    <div className="bg-cyan-900/30 p-3 rounded-lg mr-4">
-                      <Clock className="text-cyan-400" size={24} />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold mb-2">Horaires d'ouverture</h3>
-                      <p className="text-cyan-200">Lundi - Vendredi: 8h00 - 18h00</p>
-                      <p className="text-cyan-200">Samedi: 9h00 - 13h00</p>
-                      <p className="text-cyan-200">Dimanche: Fermé</p>
-                    </div>
-                  </div>
-                  
+
+
+
                   {/* Réseaux Sociaux */}
                   <div className="pt-6 border-t border-cyan-400/20">
                     <h3 className="text-lg font-bold mb-4">Suivez-nous sur les réseaux</h3>
@@ -427,9 +380,9 @@ const ContactPage = () => {
                         { icon: <Linkedin size={20} />, label: "LinkedIn" },
                         { icon: <Youtube size={20} />, label: "YouTube" }
                       ].map((social, index) => (
-                        <a 
+                        <a
                           key={index}
-                          href="#" 
+                          href="#"
                           className="w-12 h-12 rounded-full bg-[#000033] border border-cyan-400/20 flex items-center justify-center hover:bg-cyan-900/30 transition-colors"
                           aria-label={social.label}
                         >
@@ -445,102 +398,10 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Carte et FAQ */}
-      <section className="py-20 bg-gradient-to-b from-[#000044] to-[#000033]">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-12">
-            {/* Carte Google Maps */}
-            <motion.div 
-              className="lg:w-1/2"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-gradient-to-br from-[#000044] to-[#000066] rounded-xl p-6 border border-cyan-400/20 h-full">
-                <h2 className="text-2xl font-bold mb-6">Trouvez notre agence</h2>
-                
-                <div className="aspect-video bg-gradient-to-r from-cyan-700/30 to-blue-800/30 rounded-lg overflow-hidden relative">
-                  {/* Remplacez cette div par une iframe Google Maps réelle */}
-                  <div className="bg-gray-200 border-2 border-dashed w-full h-full flex items-center justify-center">
-                    <div className="text-center p-4">
-                      <MapPin className="mx-auto text-cyan-400" size={48} />
-                      <p className="mt-3 font-medium">Carte Google Maps</p>
-                      <p className="text-sm text-cyan-300 mt-1">Avenue Gamal Abdel Nasser, Nouakchott</p>
-                    </div>
-                  </div>
-                  
-                  <div className="absolute bottom-4 left-4 bg-[#000066] px-4 py-2 rounded-lg border border-cyan-400/20">
-                    <p className="text-cyan-200">Parking disponible devant l'immeuble</p>
-                  </div>
-                </div>
-                
-                <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-[#000033] p-4 rounded-lg border border-cyan-400/20">
-                    <h3 className="font-bold text-cyan-400 mb-2">Transport en commun</h3>
-                    <p className="text-cyan-200 text-sm">Lignes 12, 18 et 24 - Arrêt "Marché Capitale"</p>
-                  </div>
-                  
-                  <div className="bg-[#000033] p-4 rounded-lg border border-cyan-400/20">
-                    <h3 className="font-bold text-cyan-400 mb-2">Stationnement</h3>
-                    <p className="text-cyan-200 text-sm">Parking gratuit dans l'enceinte de l'immeuble</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-            
-            {/* FAQ */}
-            <motion.div 
-              className="lg:w-1/2"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-gradient-to-br from-[#000044] to-[#000066] rounded-xl p-6 border border-cyan-400/20 h-full">
-                <div className="flex items-center mb-6">
-                  <HelpCircle className="text-cyan-400 mr-3" size={24} />
-                  <h2 className="text-2xl font-bold">Foire Aux Questions</h2>
-                </div>
-                
-                <div className="space-y-4">
-                  {faqItems.map((item, index) => (
-                    <div 
-                      key={index}
-                      className="bg-[#000033] rounded-lg border border-cyan-400/20 overflow-hidden"
-                    >
-                      <button className="w-full text-left p-4 font-medium flex justify-between items-center hover:bg-cyan-900/20 transition-colors">
-                        <span>{item.question}</span>
-                        <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                      </button>
-                      
-                      <div className="p-4 pt-0 text-cyan-200">
-                        {item.answer}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="mt-8 bg-[#000033] p-4 rounded-lg border border-cyan-400/20">
-                  <h3 className="font-bold text-cyan-400 mb-3">Support Immédiat</h3>
-                  <p className="text-cyan-200 mb-4">
-                    Notre équipe est disponible en temps réel pour répondre à vos questions urgentes.
-                  </p>
-                  <button className="bg-cyan-600 hover:bg-cyan-700 px-4 py-2 rounded-lg font-medium flex items-center">
-                    <Headphones className="mr-2" size={18} />
-                    Ouvrir le chat en direct
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
-      {/* Équipe de Support */}
-      <section className="py-20 bg-gradient-to-b from-[#000033] to-[#000022]">
+      {/** 
+       * 
+       * <section className="py-20 ">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <motion.h2 
@@ -610,51 +471,9 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
+       * 
+      */}
 
-      {/* CTA Final */}
-      <section className="py-20 bg-gradient-to-r from-cyan-900/40 to-blue-900/40">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.h2 
-              className="text-3xl md:text-4xl font-bold mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              Prêt à lancer <span className="text-cyan-400">votre projet</span> ?
-            </motion.h2>
-            
-            <motion.p 
-              className="text-xl text-cyan-300 mb-10"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              Prenez rendez-vous pour une consultation gratuite avec nos experts
-            </motion.p>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-              viewport={{ once: true }}
-              className="flex flex-col sm:flex-row justify-center gap-4"
-            >
-              <button className="bg-cyan-600 hover:bg-cyan-700 px-8 py-4 rounded-lg text-lg font-semibold flex items-center justify-center transition-all duration-300">
-                <Calendar className="mr-2" size={20} />
-                Prendre rendez-vous
-              </button>
-              
-              <button className="bg-transparent border border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 px-8 py-4 rounded-lg text-lg font-semibold flex items-center justify-center transition-all duration-300">
-                <Phone className="mr-2" size={20} />
-                (+222) 36 00 00 00
-              </button>
-            </motion.div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

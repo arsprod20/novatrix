@@ -1,14 +1,13 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, MessageCircle, Phone } from 'lucide-react';
+import { Menu, X, MessageCircle } from 'lucide-react';
 import Image from "next/image";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Gestion du défilement
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -17,7 +16,6 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Empêcher le défilement quand le menu mobile est ouvert
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -29,14 +27,12 @@ const Header = () => {
     };
   }, [isOpen]);
 
-  // Navigation items simplifiée (sans sous-menus)
   const navItems = [
     { name: 'Accueil', path: '/' },
     { name: 'À propos', path: '/a-propos' },
     { name: 'Services', path: '/services' },
   ];
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -87,7 +83,6 @@ const Header = () => {
             />
           </motion.div>
 
-          {/* Navigation Desktop */}
           <nav className="hidden md:flex items-center space-x-1">
             <motion.ul
               className="flex space-x-1"
@@ -111,7 +106,6 @@ const Header = () => {
               ))}
             </motion.ul>
 
-            {/* Bouton Contact Desktop */}
             <motion.a
               href="/contact"
               className="ml-4 px-6 py-3 bg-gradient-to-r from-neon-cyan to-blue-500 text-deep-space font-semibold rounded-lg flex items-center gap-2 hover:shadow-lg hover:shadow-cyan-500/30 transition-all"
@@ -139,7 +133,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Menu Mobile Simplifié */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -173,13 +166,12 @@ const Header = () => {
                 ))}
               </motion.ul>
 
-              {/* Boutons Contact Mobile */}
               <motion.div
                 className="mt-8 flex flex-col gap-4"
                 variants={itemVariants}
               >
                 <motion.a
-                  href="#contact"
+                  href="/contact"
                   className="px-6 py-4 bg-gradient-to-r from-neon-cyan to-blue-500 text-deep-space font-semibold rounded-lg flex items-center justify-center gap-3"
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setIsOpen(false)}
@@ -188,22 +180,13 @@ const Header = () => {
                   <span>Envoyer un message</span>
                 </motion.a>
 
-                <motion.a
-                  href="tel:+22212345678"
-                  className="px-6 py-4 border-2 border-neon-cyan text-neon-cyan font-semibold rounded-lg flex items-center justify-center gap-3"
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setIsOpen(false)}
-                >
-                  <Phone size={20} />
-                  <span>Appeler maintenant</span>
-                </motion.a>
+               
               </motion.div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Éléments décoratifs */}
       {isScrolled && (
         <motion.div
           className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-neon-cyan via-blue-500 to-purple-500"

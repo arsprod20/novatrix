@@ -1,23 +1,20 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import {
   Code, Layout, Smartphone, Server, Shield,
-  PenTool, Eye, Zap, Mail, Briefcase,
-  Globe, Users, Star, ArrowRight,
-  Monitor, ShoppingCart, Database, Lock,
-  Palette, Video, MessageSquare, BarChart2,
-  Settings, CheckCircle, Clock, Gift,
-  Headphones, Calendar, Phone, ChevronRight
+  PenTool, Eye, Zap, Briefcase, ArrowRight,
+  Monitor, ShoppingCart,
+ Video, MessageSquare, BarChart2,
+  Settings,
+  Headphones, 
 } from "lucide-react";
 
 const ServicesPage = () => {
   const [activeTab, setActiveTab] = useState("it");
-  const [expandedService, setExpandedService] = useState<number | null>(null);
+ // const [expandedService, setExpandedService] = useState<number | null>(null);
 
-  const toggleService = (index: number) => {
-    setExpandedService(expandedService === index ? null : index);
-  };
+ 
 
   // Services IT
   const itServices = [
@@ -134,27 +131,7 @@ const ServicesPage = () => {
   ];
 
   // Études de cas
-  const caseStudies = [
-    {
-      title: "Plateforme E-Gouvernement",
-      category: "Développement Web",
-      description: "Solution centralisée pour les services administratifs mauritaniens",
-      results: ["+300 000 utilisateurs", "Réduction des délais de 70%", "Prix de l'innovation numérique"]
-    },
-    {
-      title: "Marketplace Locale",
-      category: "E-Commerce",
-      description: "Place de marché pour artisans et producteurs locaux",
-      results: ["+500 vendeurs inscrits", "30% croissance mensuelle", "Intégration paiements locaux"]
-    },
-    {
-      title: "Identité Bancaire Moderne",
-      category: "Design d'Identité",
-      description: "Refonte complète de l'identité visuelle d'une banque nationale",
-      results: ["Modernisation de l'image", "Cohérence multi-canaux", "Augmentation de la confiance"]
-    }
-  ];
-
+ 
   return (
     <div className="min-h-screen text-white overflow-hidden ">
       {/* Hero Section */}

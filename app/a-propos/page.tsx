@@ -1,11 +1,10 @@
 "use client"
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Globe, Users, Briefcase, Star, Zap, Lightbulb, Award, ArrowRight, Heart, Home, Shield, Clock, Eye, Code, Smartphone, Layout, Server, Mail, PenTool } from "lucide-react";
+import { Star, Zap, Lightbulb, ArrowRight, Heart, Home, Shield, Clock, Eye, Code, Smartphone, Layout, Server, PenTool } from "lucide-react";
 import Link from "next/link";
 
 const AboutPage = () => {
-  // Membres de l'équipe (noms mauritaniens)
   const teamMembers = [
     {
       name: "Amadou Sow",
@@ -35,7 +34,6 @@ const AboutPage = () => {
 
 
 
-  // Valeurs de l'entreprise
   const coreValues = [
     {
       title: "Innovation",
@@ -59,13 +57,7 @@ const AboutPage = () => {
     },
   ];
 
-  // Chiffres clés adaptés
-  const stats = [
-    { value: "50+", label: "Clients Satisfaits", icon: <Users size={24} /> },
-    { value: "100+", label: "Projets Livrés", icon: <Briefcase size={24} /> },
-    { value: "1", label: "Pays Desservi", icon: <Globe size={24} /> },
-    { value: "98%", label: "Taux de Satisfaction", icon: <Star size={24} /> },
-  ];
+
 
   // Services offerts
   const services = [
@@ -189,19 +181,19 @@ const AboutPage = () => {
                 Notre <span className="text-cyan-400">Histoire</span>
               </h2>
               <p className="text-cyan-200 mb-4">
-                Novatrix est née d'une ambition partagée par de jeunes professionnels mauritaniens : participer activement à la modernisation du paysage numérique national.
+                Novatrix est née {"d'une"} ambition partagée par de jeunes professionnels mauritaniens : participer activement à la modernisation du paysage numérique national.
               </p>
               <p className="text-cyan-200 mb-4">
                 Fondée en 2025 à Nouakchott, notre entreprise s’engage à construire des solutions digitales innovantes en valorisant les talents locaux et en répondant aux besoins concrets du marché.
               </p>
               <p className="text-cyan-200">
-                Nous amorçons cette aventure avec passion, humilité et détermination, en plaçant l'impact positif et la qualité au cœur de chacun de nos projets.
+                Nous amorçons cette aventure avec passion, humilité et détermination, en plaçant {"l'impact"} positif et la qualité au cœur de chacun de nos projets.
               </p>
 
               <div className="mt-8 p-6 bg-[#000066]/50 rounded-xl border border-cyan-400/20">
                 <h3 className="text-xl font-bold text-cyan-400 mb-3">Notre Vision</h3>
                 <p className="text-cyan-200">
-                  Devenir un acteur de référence dans le domaine de l'innovation numérique en Mauritanie, et bâtir des partenariats durables au service de la transformation digitale en Afrique de l'Ouest.
+                  Devenir un acteur de référence dans le domaine de {"l'innovation"} numérique en Mauritanie, et bâtir des partenariats durables au service de la transformation digitale en Afrique de {"l'Ouest."}
                 </p>
               </div>
 
@@ -216,15 +208,15 @@ const AboutPage = () => {
             >
               <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl border-2 border-cyan-400/30">
                 <Image
-                  src="/notre-vision.png" // l’image doit être dans le dossier public/
+                  src="/notre-vision.png" 
                   alt="Notre engagement numérique"
-                  fill // pour que l’image prenne toute la taille de son parent
+                  fill 
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#000066] via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent">
                   <p className="text-lg italic text-cyan-200">
-                    "Chaque projet renforce notre engagement pour la croissance numérique mauritanienne"
+                    {"Chaque projet renforce notre engagement pour la croissance numérique mauritanienne"}
                   </p>
                 </div>
               </div>
@@ -291,7 +283,7 @@ const AboutPage = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              Nos <span className="text-cyan-400">Domaines d'Expertise</span>
+              Nos <span className="text-cyan-400">Domaines {"d'Expertise"}</span>
             </motion.h2>
 
             <motion.p
@@ -341,7 +333,7 @@ const AboutPage = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              L'Équipe <span className="text-cyan-400">Novatrix</span>
+              {"L'Équipe"} <span className="text-cyan-400">Novatrix</span>
             </motion.h2>
 
             <motion.p
@@ -471,7 +463,7 @@ const AboutPage = () => {
               viewport={{ once: true }}
             >
               <div className="relative aspect-square rounded-xl overflow-hidden shadow-2xl border-2 border-cyan-400/30">
-                {/* Image en fond */}
+                
                 <Image
                   src='/notre-engagement.png'
                   alt="Engagement Illustration"
@@ -481,7 +473,7 @@ const AboutPage = () => {
                   priority={true}
                 />
 
-                {/* Overlay dégradé pour lisibilité */}
+                
                 <div className="absolute inset-0 bg-gradient-to-t from-[#000066cc] via-transparent to-transparent rounded-xl" />
 
 
