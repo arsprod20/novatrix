@@ -1,0 +1,17 @@
+[
+  {
+    "label": "Innovation locale",
+    "description": "Nous croyons en la puissance de la tech au service de la Mauritanie.",
+    "icon": "Globe"
+  },
+  {
+    "label": "Créativité sans limites",
+    "description": "Chaque projet est une nouvelle opportunité de créer l’exceptionnel.",
+    "icon": "Lightbulb"
+  },
+  {
+    "label": "Engagement humain",
+    "description": "Derrière chaque ligne de code, il y a un impact humain et social.",
+    "icon": "Users"
+  }
+]

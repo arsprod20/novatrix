@@ -1,9 +1,6 @@
 "use client";
-import {
-  Phone, Mail, Facebook, Twitter, Instagram, Linkedin
-} from "lucide-react";
 import { motion } from "framer-motion";
-//import Link from "next/link";
+import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -16,58 +13,49 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[#07005E]">
-      <div className="py-12 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
-        <motion.div
+    <footer className="bg-[#0a0a6e] py-12">
+      <div className="max-w-6xl mx-auto px-4">
+        {/* Section centrale avec les réseaux sociaux */}
+        <motion.div 
+          className="flex flex-col items-center justify-center gap-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <h4 className="text-xl font-semibold mb-4">Nous contacter</h4>
-          <div className="space-y-4 text-cyan-300 text-sm">
-            {/*<div className="flex items-start gap-3">
-              <MapPin className="text-cyan-400" size={18} />
-              <p>Avenue Gamal Abdel Nasser, Nouakchott, Mauritanie</p>
-            </div>*/}
-            <div className="flex items-start gap-3">
-              <Phone className="text-cyan-400" size={18} />
-              <p>(+222) 36 12 34 56</p>
-            </div>
-            <div className="flex items-start gap-3">
-              <Mail className="text-cyan-400" size={18} />
-              <p>contact@novatrix.dev</p>
-            </div>
+          {/* Logo minimaliste */}
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-cyan-400 rounded-full"></div>
+            <span className="text-xl font-light tracking-wider">NOVATRIX</span>
           </div>
-        </motion.div>
 
-        {/* Réseaux Sociaux */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h4 className="text-xl font-semibold mb-4">Suivez-nous</h4>
-          <div className="flex space-x-4">
+          {/* Réseaux sociaux avec animation au survol */}
+          <div className="flex justify-center space-x-6">
             {socialLinks.map((social, index) => (
               <motion.a
                 key={index}
                 href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-[#000044] border border-cyan-400/20 hover:bg-cyan-800/30 transition-colors"
+                className="p-3  transition-colors"
                 aria-label={social.label}
-                whileHover={{ y: -3 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ 
+                  y: -5,
+                 
+                }}
+                whileTap={{ scale: 0.9 }}
               >
                 {social.icon}
               </motion.a>
             ))}
           </div>
+          
+          {/* Ligne de séparation subtile */}
+          <div className="w-24 h-px bg-cyan-400/30 mx-auto"></div>
+          
+          {/* Copyright */}
+          <p className="text-cyan-400/60 text-sm tracking-wide">
+            &copy; {currentYear} Novatrix. Tous droits réservés.
+          </p>
         </motion.div>
-      </div>
-
-      <div className="border-t border-cyan-400/10 py-6 text-center text-cyan-300/70 text-sm">
-        &copy; {currentYear} Novatrix. Tous droits réservés.
       </div>
     </footer>
   );

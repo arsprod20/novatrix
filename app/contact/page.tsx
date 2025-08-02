@@ -1,10 +1,11 @@
+//contact/page.tsx
 "use client";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
   Mail, Phone, MessageSquare,
-  User, Briefcase, Globe, Send, CheckCircle,
-  Facebook, Twitter, Instagram, Linkedin, Youtube, Headphones
+  User, Briefcase, Globe, Send, CheckCircle, X,
+  Facebook, Twitter, Instagram, Linkedin, Headphones,
 } from "lucide-react";
 
 const ContactPage = () => {
@@ -20,42 +21,21 @@ const ContactPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [activeTab, setActiveTab] = useState("support");
+  const [services, setServices] = useState<string[]>([]);
 
-  const services = [
-    "Développement Web",
-    "Applications Mobiles",
-    "E-Commerce",
-    "Identité Visuelle",
-    "UI/UX Design",
-    "Marketing Digital",
-    "Sécurité Informatique",
-    "Autre"
-  ];
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await fetch("/data/contact/contactData.json");
+        const data = await response.json();
+        setServices(data);
+      } catch (error) {
+        console.error("Erreur lors du chargement des services:", error);
+      }
+    };
 
-  {/**
-   const supportTeam = [
-    {
-      name: "Mohamed Ould Ahmed",
-      role: "Support Technique",
-      email: "mohamed@novatrix.mr",
-      phone: "+222 36 12 34 56"
-    },
-    {
-      name: "Khadijetou Mint Salem",
-      role: "Service Client",
-      email: "khadijetou@novatrix.mr",
-      phone: "+222 36 23 45 67"
-    },
-    {
-      name: "Sidi Mohamed Ould Brahim",
-      role: "Responsable Commercial",
-      email: "commercial@novatrix.mr",
-      phone: "+222 36 34 56 78"
-    }
-  ];
-  
-  */}
-
+    fetchServices();
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -64,35 +44,47 @@ const ContactPage = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulation d'envoi de formulaire
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        company: "",
-        service: "",
-        message: ""
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          contactType: activeTab
+        }),
       });
 
-      // Réinitialiser le message de succès après 5 secondes
-      setTimeout(() => setSubmitSuccess(false), 5000);
-    }, 1500);
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitSuccess(true);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          service: "",
+          message: ""
+        });
+      } else {
+        throw new Error(result.error || 'Erreur lors de l\'envoi du message');
+      }
+    } catch {
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-
   return (
-    <div className="min-h-screen  text-white overflow-hidden">
+    <div className="min-h-screen text-white overflow-hidden">
       {/* Hero Section */}
       <section className="relative py-16 md:py-20 overflow-hidden">
-
-
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h1
@@ -169,22 +161,6 @@ const ContactPage = () => {
                 <p className="text-cyan-300 mb-8">
                   Remplissez le formulaire et notre équipe vous répondra dans les plus brefs délais
                 </p>
-
-                {submitSuccess && (
-                  <motion.div
-                    className="mb-6 p-4 bg-green-900/30 border border-green-500 rounded-lg flex items-start"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                  >
-                    <CheckCircle className="text-green-400 mr-3 mt-1" size={24} />
-                    <div>
-                      <h3 className="font-bold text-green-400">Message envoyé avec succès !</h3>
-                      <p className="text-green-200 mt-1">
-                        Nous avons bien reçu votre demande et vous contacterons dans les plus brefs délais.
-                      </p>
-                    </div>
-                  </motion.div>
-                )}
 
                 <form onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -336,8 +312,6 @@ const ContactPage = () => {
                 <h2 className="text-2xl md:text-3xl font-bold mb-8">Nos Coordonnées</h2>
 
                 <div className="space-y-6">
-
-
                   {/* Contact */}
                   <div className="flex items-start">
                     <div className="bg-cyan-900/30 p-3 rounded-lg mr-4">
@@ -354,21 +328,6 @@ const ContactPage = () => {
                     </div>
                   </div>
 
-                  {/* Email */}
-                  <div className="flex items-start">
-                    <div className="bg-cyan-900/30 p-3 rounded-lg mr-4">
-                      <Mail className="text-cyan-400" size={24} />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold mb-2">Email</h3>
-                      <p className="text-cyan-200">Support: support@novatrix.dev</p>
-                      <p className="text-cyan-200">Commercial: contact@novatrix.dev</p>
-                      <p className="text-cyan-200">Carrières: recrutement@novatrix.dev</p>
-                    </div>
-                  </div>
-
-
-
                   {/* Réseaux Sociaux */}
                   <div className="pt-6 border-t border-cyan-400/20">
                     <h3 className="text-lg font-bold mb-4">Suivez-nous sur les réseaux</h3>
@@ -378,7 +337,6 @@ const ContactPage = () => {
                         { icon: <Twitter size={20} />, label: "Twitter" },
                         { icon: <Instagram size={20} />, label: "Instagram" },
                         { icon: <Linkedin size={20} />, label: "LinkedIn" },
-                        { icon: <Youtube size={20} />, label: "YouTube" }
                       ].map((social, index) => (
                         <a
                           key={index}
@@ -398,82 +356,46 @@ const ContactPage = () => {
         </div>
       </section>
 
-
-      {/** 
-       * 
-       * <section className="py-20 ">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <motion.h2 
-              className="text-3xl md:text-4xl font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
+      {/* Modal de succès */}
+      <AnimatePresence>
+        {submitSuccess && (
+          <motion.div
+            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="bg-gradient-to-br from-[#000044] to-[#000066] rounded-xl p-8 max-w-md w-full border border-cyan-400/20 relative"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
             >
-              Notre <span className="text-cyan-400">Équipe de Support</span>
-            </motion.h2>
-            
-            <motion.p 
-              className="text-xl text-cyan-300 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              Des experts dédiés à votre satisfaction et à la réussite de vos projets
-            </motion.p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {supportTeam.map((member, index) => (
-              <motion.div 
-                key={index}
-                className="bg-gradient-to-br from-[#000044] to-[#000066] rounded-xl overflow-hidden border border-cyan-400/20"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                viewport={{ once: true }}
+              <button
+                onClick={() => setSubmitSuccess(false)}
+                className="absolute top-4 right-4 text-cyan-300 hover:text-white"
+                aria-label="Fermer"
               >
-                <div className="p-6">
-                  <div className="flex items-center mb-6">
-                    <div className="bg-gradient-to-br from-cyan-700 to-cyan-500 w-16 h-16 rounded-full flex items-center justify-center text-white font-bold">
-                      {member.name.split(' ').map(n => n[0]).join('')}
-                    </div>
-                    <div className="ml-4">
-                      <h3 className="text-xl font-bold">{member.name}</h3>
-                      <p className="text-cyan-400">{member.role}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <div className="flex items-center">
-                      <Mail className="text-cyan-400 mr-3" size={18} />
-                      <a href={`mailto:${member.email}`} className="text-cyan-200 hover:text-cyan-300">
-                        {member.email}
-                      </a>
-                    </div>
-                    
-                    <div className="flex items-center">
-                      <Phone className="text-cyan-400 mr-3" size={18} />
-                      <a href={`tel:${member.phone}`} className="text-cyan-200 hover:text-cyan-300">
-                        {member.phone}
-                      </a>
-                    </div>
-                  </div>
-                  
-                  <button className="mt-6 w-full border border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 py-2 rounded-lg transition-colors">
-                    Prendre rendez-vous
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-       * 
-      */}
-
+                <X size={24} />
+              </button>
+              
+              <div className="text-center">
+                <CheckCircle className="text-green-400 mx-auto mb-4" size={48} />
+                <h3 className="text-2xl font-bold mb-2">Message envoyé avec succès !</h3>
+                <p className="text-cyan-200 mb-6">
+                  Nous avons bien reçu votre demande et vous contacterons dans les plus brefs délais.
+                </p>
+                <button
+                  onClick={() => setSubmitSuccess(false)}
+                  className="bg-cyan-600 hover:bg-cyan-700 px-6 py-3 rounded-lg font-medium"
+                >
+                  Fermer
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

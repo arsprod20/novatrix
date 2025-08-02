@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Création de chartes graphiques",
+    "icon": "Palette",
+    "description": "Identité visuelle unique et cohérente pour votre marque"
+  },
+  {
+    "title": "Supports print & digitaux",
+    "icon": "Printer",
+    "description": "Design adapté à tous les canaux de communication"
+  },
+  {
+    "title": "UI/UX Design",
+    "icon": "Layout",
+    "description": "Interfaces intuitives et expériences utilisateur mémorables"
+  },
+  {
+    "title": "Motion design et animations",
+    "icon": "Film",
+    "description": "Contenus dynamiques qui captivent votre audience"
+  },
+  {
+    "title": "Contenus pour réseaux sociaux",
+    "icon": "Share2",
+    "description": "Stratégies visuelles engageantes pour les plateformes sociales"
+  }
+]

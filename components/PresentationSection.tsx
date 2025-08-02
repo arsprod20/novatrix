@@ -1,5 +1,13 @@
 import { motion } from "framer-motion";
-import { Rocket, Target, Users, Lightbulb, Globe} from "lucide-react";
+import * as Icons from "lucide-react";
+import { Rocket, Target, Lightbulb, Users } from "lucide-react";
+import { useEffect, useState } from "react";
+
+interface CoreValue {
+  label: string;
+  description: string;
+  icon: keyof typeof Icons;
+}
 
 const PresentationSection = () => {
   const containerVariants = {
@@ -20,6 +28,22 @@ const PresentationSection = () => {
       transition: { duration: 0.6 }
     }
   };
+
+  const [values, setValues] = useState<CoreValue[]>([]);
+
+  useEffect(() => {
+    const fetchValues = async () => {
+      try {
+        const response = await fetch("/data/home/core-values.json");
+        const data = await response.json();
+        setValues(data);
+      } catch (error) {
+        console.error("Erreur lors du chargement des valeurs clés:", error);
+      }
+    };
+
+    fetchValues();
+  }, []);
 
   return (
     <motion.section
@@ -102,39 +126,28 @@ const PresentationSection = () => {
             className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6"
             variants={containerVariants}
           >
-            {[
-              {
-                label: "Innovation locale",
-                description: "Nous croyons en la puissance de la tech au service de la Mauritanie.",
-                icon: <Globe size={24} />
-              },
-              {
-                label: "Créativité sans limites",
-                description: "Chaque projet est une nouvelle opportunité de créer l’exceptionnel.",
-                icon: <Lightbulb size={24} />
-              },
-              {
-                label: "Engagement humain",
-                description: "Derrière chaque ligne de code, il y a un impact humain et social.",
-                icon: <Users size={24} />
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                className="text-left p-6 bg-deep-midnight/50 rounded-xl border border-cyan-900/30"
-                variants={itemVariants}
-              >
-                <div className="flex items-center gap-3 mb-3 text-neon-cyan font-bold text-lg">
-                  <span className="shrink-0">{item.icon}</span>
-                  <span>{item.label}</span>
-                </div>
+            {values.map((item, index) => {
+              const Icon = Icons[item.icon] as React.ComponentType<{ size?: number }>;
 
-                <div className="text-cyan-200 text-sm leading-relaxed">
-                  {item.description}
-                </div>
-              </motion.div>
-            ))}
+              return (
+                <motion.div
+                  key={index}
+                  className="text-left p-6 bg-deep-midnight/50 rounded-xl border border-cyan-900/30"
+                  variants={itemVariants}
+                >
+                  <div className="flex items-center gap-3 mb-3 text-neon-cyan font-bold text-lg">
+                    <span className="shrink-0"><Icon size={24} /></span>
+                    <span>{item.label}</span>
+                  </div>
+
+                  <div className="text-cyan-200 text-sm leading-relaxed">
+                    {item.description}
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
+
 
         </motion.div>
 

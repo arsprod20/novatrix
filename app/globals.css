@@ -22,6 +22,10 @@
                      linear-gradient(45deg, #000044 0%, var(--deep-midnight) 100%);
 }
 
+.font-arabic {
+  font-family: 'Noto Naskh Arabic', serif;
+}
+
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -267,3 +271,4 @@ h1 {
 .floating-element {
   animation: float 6s infinite ease-in-out;
 }
+
