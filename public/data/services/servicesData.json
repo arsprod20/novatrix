@@ -1,0 +1,116 @@
+{
+  "itServices": [
+    {
+      "title": "Développement Web",
+      "icon": "Code",
+      "description": "Sites vitrines, portails d'entreprise et plateformes complexes sur mesure",
+      "details": "Nous créons des solutions web performantes avec les dernières technologies comme React.js/Next.js, en optimisant le SEO et l'expérience utilisateur."
+    },
+    {
+      "title": "E-Commerce",
+      "icon": "ShoppingCart",
+      "description": "Boutiques en ligne sécurisées avec gestion de stock et paiements locaux",
+      "details": "Solutions complètes avec intégration CMI, tableau de bord analytique et design mobile-first pour maximiser vos conversions."
+    },
+    {
+      "title": "Applications Mobiles",
+      "icon": "Smartphone",
+      "description": "Applications natives et cross-platform pour iOS et Android",
+      "details": "Développement d'applications performantes avec React Native, API sécurisées et notifications push."
+    },
+    {
+      "title": "Solutions d'Entreprise",
+      "icon": "Briefcase",
+      "description": "Systèmes de gestion intégrés pour optimiser vos opérations",
+      "details": "ERP personnalisé, CRM intelligent et outils de Business Intelligence pour transformer vos processus métiers."
+    },
+    {
+      "title": "Infrastructure & Hébergement",
+      "icon": "Server",
+      "description": "Solutions d'hébergement local et gestion de vos serveurs",
+      "details": "Hébergement cloud sécurisé, noms de domaine .mr et sauvegardes quotidiennes pour une présence en ligne fiable."
+    },
+    {
+      "title": "Sécurité Informatique",
+      "icon": "Shield",
+      "description": "Protection de vos données contre les cybermenaces",
+      "details": "Audits complets, pare-feux nouvelle génération et formations RGPD pour sécuriser votre infrastructure."
+    },
+    {
+      "title": "Agents IA & Automatisation",
+      "icon": "Bot",
+      "description": "Automatisation de processus et agents conversationnels intelligents",
+      "details": "Développement d'agents IA sur mesure avec OpenAI ou Rasa, automatisation de tâches répétitives, intégration avec vos outils métiers et amélioration de la productivité."
+    }
+  ],
+  "designServices": [
+    {
+      "title": "Identité Visuelle",
+      "icon": "PenTool",
+      "description": "Charte graphique complète pour une image de marque cohérente",
+      "details": "Création de logo, palette chromatique et guide de style pour une identité forte et mémorable."
+    },
+    {
+      "title": "UI/UX Design",
+      "icon": "Eye",
+      "description": "Interfaces utilisateur intuitives et expériences digitales mémorables",
+      "details": "Wireframes interactifs, prototypes cliquables et tests utilisateurs pour des produits exceptionnels."
+    },
+    {
+      "title": "Design Print",
+      "icon": "Layout",
+      "description": "Supports de communication physiques professionnels",
+      "details": "Création de cartes de visite, brochures et supports PLV pour votre communication offline."
+    },
+    {
+      "title": "Design Digital",
+      "icon": "Monitor",
+      "description": "Contenus visuels pour vos canaux digitaux",
+      "details": "Bannières réseaux sociaux, emailings responsives et présentations impactantes."
+    },
+    {
+      "title": "Motion Design",
+      "icon": "Video",
+      "description": "Animations et vidéos pour captiver votre audience",
+      "details": "Vidéos explicatives, animations logo et stories interactives pour engager vos utilisateurs."
+    },
+    {
+      "title": "Stratégie de Marque",
+      "icon": "BarChart2",
+      "description": "Positionnement et stratégie de communication sur mesure",
+      "details": "Audit de marque, stratégie digitale et benchmark pour un positionnement concurrentiel optimal."
+    }
+  ],
+  "workflowSteps": [
+    {
+      "step": "1",
+      "title": "Consultation Initiale",
+      "description": "Analyse de vos besoins et objectifs commerciaux",
+      "icon": "MessageSquare"
+    },
+    {
+      "step": "2",
+      "title": "Proposition Stratégique",
+      "description": "Plan d'action détaillé avec livrables et échéancier",
+      "icon": "Settings"
+    },
+    {
+      "step": "3",
+      "title": "Conception & Développement",
+      "description": "Création itérative avec validations intermédiaires",
+      "icon": "Code"
+    },
+    {
+      "step": "4",
+      "title": "Lancement & Formation",
+      "description": "Mise en production et formation de vos équipes",
+      "icon": "Zap"
+    },
+    {
+      "step": "5",
+      "title": "Support Continu",
+      "description": "Maintenance, améliorations et suivi des performances",
+      "icon": "Headphones"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Créer autrement",
+    "desc": "Nous repoussons les limites de la créativité pour bâtir des solutions innovantes et utiles.",
+    "icon": "Sparkles",
+    "color": "from-cyan-500 to-blue-500"
+  },
+  {
+    "title": "L’exigence au service de l’impact",
+    "desc": "Chaque ligne de code est pensée pour offrir des résultats durables et mesurables.",
+    "icon": "Rocket",
+    "color": "from-purple-500 to-indigo-500"
+  },
+  {
+    "title": "Tech pour tous",
+    "desc": "Nous rendons la technologie accessible aux entrepreneurs, PME et institutions locales.",
+    "icon": "Globe",
+    "color": "from-emerald-500 to-cyan-500"
+  },
+  {
+    "title": "Développer chez nous",
+    "desc": "Notre priorité : renforcer l’écosystème numérique en Mauritanie et en Afrique.",
+    "icon": "Users",
+    "color": "from-amber-500 to-orange-500"
+  }
+]

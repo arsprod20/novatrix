@@ -1,0 +1,274 @@
+@import "tailwindcss";
+
+
+:root {
+  /* PALETTE NÉON MODERNISÉE */
+  --neon-cyan: #03eeff;
+  --neon-blue: #2139FB;
+  --deep-midnight: #000066;
+  --pure-white: #FFFFFF;
+  
+  /* COULEURS FONDAMENTALES */
+  --background: var(--deep-midnight);
+  --foreground: var(--pure-white);
+  
+  /* MESH GRADIENTS PRÉDÉFINIS */
+  --mesh-gradient-1: radial-gradient(circle at 20% 30%, rgba(3, 238, 255, 0.3), transparent 40%),
+                     radial-gradient(circle at 80% 70%, rgba(33, 57, 251, 0.25), transparent 45%),
+                     linear-gradient(135deg, var(--deep-midnight) 0%, #000022 100%);
+  
+  --mesh-gradient-2: radial-gradient(circle at 10% 85%, rgba(3, 238, 255, 0.4), transparent 35%),
+                     radial-gradient(circle at 90% 15%, rgba(33, 57, 251, 0.3), transparent 40%),
+                     linear-gradient(45deg, #000044 0%, var(--deep-midnight) 100%);
+}
+
+.font-arabic {
+  font-family: 'Noto Naskh Arabic', serif;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* FOND MESH GRADIENT ANIMÉ */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--mesh-gradient-1);
+  z-index: -2;
+  opacity: 1;
+  animation: mesh-transition 25s infinite alternate ease-in-out;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* EFFET DE LUMIÈRE INTERACTIVE */
+body::after {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at center, rgba(3, 238, 255, 0.05) 0%, transparent 70%),
+    radial-gradient(circle at 80% 20%, rgba(33, 57, 251, 0.04) 0%, transparent 80%);
+  z-index: -1;
+  opacity: 0.5;
+  animation: light-rotation 45s infinite linear;
+  pointer-events: none;
+}
+
+/* TYPOGRAPHIE NÉON AVANCÉE */
+h1, h2, h3, h4 {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  position: relative;
+}
+
+h1 {
+  text-shadow: 
+    0 0 12px rgba(3, 238, 255, 0.7),
+    0 0 32px rgba(33, 57, 251, 0.5),
+    0 0 72px rgba(33, 57, 251, 0.3);
+}
+
+.neon-text {
+  text-shadow: 
+    0 0 8px var(--neon-cyan),
+    0 0 18px rgba(33, 57, 251, 0.6),
+    0 0 28px rgba(33, 57, 251, 0.3);
+}
+
+/* BORDURES NÉON DYNAMIQUES */
+.neon-border {
+  position: relative;
+  border: 1px solid rgba(3, 238, 255, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.neon-border::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+  animation: border-pulse 3s infinite linear;
+}
+
+.neon-border::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+  animation: border-pulse 3s infinite linear reverse;
+}
+
+/* ANIMATIONS AVANCÉES */
+@keyframes mesh-transition {
+  0%, 100% { 
+    background: var(--mesh-gradient-1);
+    filter: hue-rotate(0deg);
+  }
+  50% { 
+    background: var(--mesh-gradient-2);
+    filter: hue-rotate(10deg);
+  }
+}
+
+@keyframes light-rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes neon-pulse {
+  0%, 100% { 
+    text-shadow: 
+      0 0 8px rgba(3, 238, 255, 0.7),
+      0 0 18px rgba(33, 57, 251, 0.5),
+      0 0 28px rgba(33, 57, 251, 0.3);
+  }
+  50% { 
+    text-shadow: 
+      0 0 12px rgba(3, 238, 255, 0.9),
+      0 0 28px rgba(33, 57, 251, 0.7),
+      0 0 48px rgba(33, 57, 251, 0.4);
+  }
+}
+
+@keyframes border-pulse {
+  0% { opacity: 0.3; transform: translateX(-100%); }
+  40%, 60% { opacity: 1; }
+  100% { opacity: 0.3; transform: translateX(100%); }
+}
+
+/* COMPOSANTS INTERACTIFS */
+.cta-button {
+  background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-blue) 100%);
+  border: none;
+  color: var(--pure-white);
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 0 15px rgba(3, 238, 255, 0.5),
+    0 0 30px rgba(33, 57, 251, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cta-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 
+    0 0 25px rgba(3, 238, 255, 0.8),
+    0 0 45px rgba(33, 57, 251, 0.5);
+}
+
+.cta-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: button-shine 2s infinite;
+}
+
+.feature-card {
+  background: rgba(0, 2, 34, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 10px 30px rgba(3, 238, 255, 0.2),
+    0 0 0 1px rgba(3, 238, 255, 0.3);
+}
+
+/* COMPOSANTS SWIPER MODERNISÉS */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--neon-cyan) !important;
+  text-shadow: 0 0 12px rgba(3, 238, 255, 0.7);
+  backdrop-filter: blur(4px);
+  background: rgba(0, 6, 102, 0.5) !important;
+  border-radius: 50%;
+  width: 50px !important;
+  height: 50px !important;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(3, 238, 255, 0.2) !important;
+  transform: scale(1.1);
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--neon-cyan) !important;
+  box-shadow: 0 0 15px var(--neon-cyan);
+  transform: scale(1.2);
+}
+
+/* ANIMATIONS SPÉCIFIQUES */
+@keyframes button-shine {
+  100% { left: 100%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  body::before {
+    background-size: 150% 150%;
+    animation-duration: 30s;
+  }
+  
+  .neon-text {
+    text-shadow: 
+      0 0 6px var(--neon-cyan),
+      0 0 12px rgba(33, 57, 251, 0.5);
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.floating-element {
+  animation: float 6s infinite ease-in-out;
+}
+

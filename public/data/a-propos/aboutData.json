@@ -1,0 +1,66 @@
+{
+  "coreValues": [
+    {
+      "title": "Innovation",
+      "description": "Solutions avant-gardistes adaptées au marché mauritanien",
+      "icon": "Lightbulb"
+    },
+    {
+      "title": "Excellence",
+      "description": "Rigueur dans l'exécution et attention aux détails",
+      "icon": "Star"
+    },
+    {
+      "title": "Accessibilité",
+      "description": "Offres adaptées à tous les budgets",
+      "icon": "Heart"
+    },
+    {
+      "title": "Patriotisme économique",
+      "description": "Développement des compétences locales et valorisation des talents nationaux",
+      "icon": "Home"
+    }
+  ],
+  "services": [
+    {
+      "category": "Technologies de l'Information",
+      "items": [
+        { "name": "Développement web & mobile", "icon": "Code" },
+        { "name": "Infogérance & Hébergement", "icon": "Server" },
+        { "name": "Maintenance IT & Support", "icon": "Smartphone" },
+        { "name": "Sécurité informatique", "icon": "Shield" }
+      ]
+    },
+    {
+      "category": "Design & Communication",
+      "items": [
+        { "name": "Identité visuelle", "icon": "PenTool" },
+        { "name": "Création print & digital", "icon": "Layout" },
+        { "name": "UI/UX Design", "icon": "Eye" },
+        { "name": "Motion design", "icon": "Zap" }
+      ]
+    }
+  ],
+  "commitments": [
+    {
+      "title": "Satisfaction garantie",
+      "description": "Revisions illimitées jusqu'à parfaite adéquation",
+      "icon": "Heart"
+    },
+    {
+      "title": "Délais tenus",
+      "description": "Pénalités en cas de retard de livraison",
+      "icon": "Clock"
+    },
+    {
+      "title": "Transparence",
+      "description": "Devis détaillés sans coûts cachés",
+      "icon": "Lightbulb"
+    },
+    {
+      "title": "Confidentialité",
+      "description": "Protocoles de sécurité conformes RGPD",
+      "icon": "Shield"
+    }
+  ]
+}
