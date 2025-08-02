@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, easeOut, easeInOut } from "framer-motion";
 import { useEffect, useState } from "react";
 import * as Icons from "lucide-react";
 
@@ -43,7 +43,7 @@ const ValuesSection = () => {
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
+        ease: easeOut, // ✅ corrigé
       },
     },
     hover: {
@@ -130,7 +130,7 @@ const ValuesSection = () => {
                   transition={{
                     duration: 4,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: easeInOut, // ✅ corrigé
                   }}
                 />
                 <motion.div
@@ -139,7 +139,7 @@ const ValuesSection = () => {
                   transition={{
                     duration: 5,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: easeInOut, // ✅ corrigé
                     delay: 0.5,
                   }}
                 />
