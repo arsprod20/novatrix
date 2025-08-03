@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Menu, X,MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { Menu, X, MessageCircle } from 'lucide-react';
-import Image from "next/image";
+import Image from 'next/image';
 
-const navItems = [
+const links = [
   { name: 'Accueil', path: '/' },
   { name: 'À propos', path: '/a-propos' },
   { name: 'Services', path: '/services' },
@@ -21,7 +21,7 @@ const menuVariants: Variants = {
       duration: 0.3,
       ease: 'easeInOut',
       staggerChildren: 0.05,
-      when: 'afterChildren',
+      when: "afterChildren"
     },
   },
   visible: {
@@ -29,8 +29,8 @@ const menuVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.4,
-      ease: [0.36, 0.66, 0.04, 1],
-      staggerChildren: 0.1,
+      ease: [0.36, 0.66, 0.04, 1] as const,
+      staggerChildren: 0.1
     },
   },
 };
@@ -39,86 +39,44 @@ const itemVariants: Variants = {
   hidden: {
     y: -10,
     opacity: 0,
-    transition: { duration: 0.2 },
+    transition: { duration: 0.2 }
   },
   visible: {
     y: 0,
     opacity: 1,
     transition: {
       duration: 0.35,
-      ease: [0.34, 1.56, 0.64, 1],
-    },
+      ease: [0.34, 1.56, 0.64, 1] as const
+    }
   },
 };
 
 export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const scrollPosition = useRef(0);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Gestion optimale du scroll pendant l'ouverture/fermeture du menu
-  useEffect(() => {
-    if (isMenuOpen) {
-      // Sauvegarde de la position actuelle du scroll
-      scrollPosition.current = window.scrollY;
-      
-      // Blocage du scroll avec préservation de la position
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollPosition.current}px`;
-      document.body.style.width = '100%';
-    } else {
-      // Rétablissement du scroll
-      const scrollY = document.body.style.top;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
-    }
-
-    // Nettoyage
-    return () => {
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-    };
-  }, [isMenuOpen]);
-
-  // Fermer le menu lors du redimensionnement
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768 && isMenuOpen) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [isMenuOpen]);
-
   return (
-    <motion.header
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-deep-midnight/90 backdrop-blur-md py-2 shadow-lg shadow-cyan-900/20 border-b border-cyan-900/30'
-          : 'bg-transparent py-4'
-      }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled
+          ? 'bg-background/90 backdrop-blur-md py-0 shadow-lg border-b border-foreground/5'
+          : 'bg-transparent py-2'
+        }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          {/* Logo avec animation */}
-          <Link href="/">
+      <nav
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        aria-label="Navigation principale"
+      >
+        <div className="flex justify-between items-center h-16">
+             <Link href="/">
             <motion.div 
               className="flex items-center group"
               whileHover={{ scale: 1.03 }}
@@ -138,34 +96,36 @@ export default function Header() {
             </motion.div>
           </Link>
 
-          {/* Navigation Desktop */}
-          <nav className="hidden md:flex items-center space-x-4">
-            <ul className="flex space-x-2">
-              {navItems.map((item) => {
-                const isActive = pathname === item.path;
-                return (
-                  <motion.li 
-                    key={item.name} 
-                    className="relative"
-                    variants={itemVariants}
+          <ul className="hidden md:flex space-x-6 items-center">
+            {links.map((link) => {
+              const isActive = pathname === link.path;
+              return (
+                <li key={link.name}>
+                  <Link
+                    href={link.path}
+                    className={`
+                      relative text-base font-medium px-3 py-2 transition-all
+                      ${isActive
+                        ? 'text-[#00eaff]'
+                        : 'text-foreground/80 hover:text-[#00eaff] transition-colors duration-300'}
+                    `}
+                    aria-current={isActive ? 'page' : undefined}
                   >
-                    <Link
-                      href={item.path}
-                      className={`px-4 py-2.5 flex items-center font-medium transition-colors rounded-lg ${
-                        isActive 
-                          ? 'text-white bg-cyan-900/20' 
-                          : 'text-cyan-100 hover:text-white hover:bg-cyan-900/10'
-                      }`}
-                      aria-current={isActive ? 'page' : undefined}
-                    >
-                      {item.name}
-                    </Link>
-                  </motion.li>
-                );
-              })}
-            </ul>
+                    <span className="relative z-10">{link.name}</span>
+                    {isActive && (
+                      <motion.div
+                        className="absolute inset-0 bg-foreground/5 rounded-lg -z-0"
+                        layoutId="activeIndicator"
+                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                  </Link>
+                </li>
+              );
+            })}
 
-            <motion.div
+            {/* Bouton Store à droite après Contact avec fond bleu */}
+             <motion.div
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -177,97 +137,89 @@ export default function Header() {
                 <span>Contact</span>
               </Link>
             </motion.div>
-          </nav>
 
-          {/* Bouton menu mobile unique */}
+          </ul>
+
           <motion.button
-            className="md:hidden text-cyan-100 p-3 rounded-lg hover:bg-cyan-900/20 transition-colors z-[70]"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            whileTap={{ scale: 0.9 }}
+            className="md:hidden p-2 rounded-lg bg-foreground/5 hover:bg-foreground/10 transition-all"
             aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
           >
             <AnimatePresence mode="wait">
               {isMenuOpen ? (
-                <X size={24} key="close" className="text-white" />
+                <X
+                  size={24}
+                  key="close"
+                  className="text-[#00eaff]"
+                />
               ) : (
-                <Menu size={24} key="menu" className="text-cyan-100" />
+                <Menu
+                  size={24}
+                  key="menu"
+                  className="text-foreground"
+                />
               )}
             </AnimatePresence>
           </motion.button>
         </div>
-      </div>
 
-      {/* Menu Mobile */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div 
-            className="md:hidden fixed inset-0 z-[60] flex flex-col"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Fond flou */}
-            <div 
-              className="absolute inset-0 bg-deep-space/90 backdrop-blur-lg"
-              onClick={() => setIsMenuOpen(false)}
-            />
-
-            {/* Contenu du menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
             <motion.div
-              className="relative bg-deep-midnight/95 backdrop-blur-xl border-t border-cyan-900/30 mt-16 h-full overflow-y-auto"
-              initial={{ y: '100%' }}
-              animate={{ y: 0 }}
-              exit={{ y: '100%' }}
-              transition={{ duration: 0.4, ease: 'easeInOut' }}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={menuVariants}
+              className="md:hidden overflow-hidden"
             >
-              <div className="container mx-auto px-4 py-8">
-                <motion.ul
-                  className="space-y-3"
-                  variants={menuVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  {navItems.map((item) => {
-                    const isActive = pathname === item.path;
+              <motion.div
+                className="bg-background/95 backdrop-blur-2xl border border-foreground/10 rounded-xl shadow-2xl shadow-cyan-500/10 mt-2"
+              >
+                <ul className="px-2 py-3 space-y-1">
+                  {links.map((link) => {
+                    const isActive = pathname === link.path;
                     return (
                       <motion.li
-                        key={item.name}
+                        key={link.name}
                         variants={itemVariants}
                       >
                         <Link
-                          href={item.path}
+                          href={link.path}
                           onClick={() => setIsMenuOpen(false)}
-                          className={`flex items-center px-4 py-4 rounded-lg text-lg font-medium transition-all ${
-                            isActive
-                              ? 'text-[#00eaff] bg-cyan-900/20'
-                              : 'text-cyan-100 hover:bg-cyan-900/20'
-                          }`}
+                          className={`
+                            flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all
+                            ${isActive
+                              ? 'text-[#00eaff] bg-gradient-to-r from-foreground/5 to-foreground/10'
+                              : 'text-foreground/90 hover:bg-foreground/5'
+                            }
+                          `}
                           aria-current={isActive ? 'page' : undefined}
                         >
                           {isActive ? (
                             <motion.span
-                              className="w-2 h-2 rounded-full bg-[#00eaff] mr-3 shadow-[0_0_8px_#00eaff]"
+                              className="w-1.5 h-1.5 rounded-full bg-[#00eaff] mr-3 shadow-[0_0_6px_#00eaff]"
                               animate={{
-                                scale: [1, 1.4, 1],
-                                opacity: [0.7, 1, 0.7]
+                                scale: [1, 1.3, 1],
+                                opacity: [0.8, 1, 0.8]
                               }}
                               transition={{
                                 repeat: Infinity,
-                                duration: 1.5
+                                duration: 1.8
                               }}
                             />
                           ) : (
-                            <span className="w-2 h-2 mr-3" />
+                            <span className="w-1.5 h-1.5 mr-3" />
                           )}
-                          <span>{item.name}</span>
+                          <span>{link.name}</span>
                         </Link>
                       </motion.li>
                     );
                   })}
-                </motion.ul>
 
-                <motion.div 
+                  {/* Bouton Store dans le menu mobile */}
+                  <motion.div 
                   className="mt-8"
                   variants={itemVariants}
                 >
@@ -280,21 +232,12 @@ export default function Header() {
                     <span>Envoyer un message</span>
                   </Link>
                 </motion.div>
-              </div>
+                </ul>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Ligne colorée en bas quand scrollé */}
-      {isScrolled && (
-        <motion.div
-          className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-neon-cyan via-blue-500 to-purple-500"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.5 }}
-        />
-      )}
-    </motion.header>
+          )}
+        </AnimatePresence>
+      </nav>
+    </header>
   );
 }
