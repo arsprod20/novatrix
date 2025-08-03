@@ -5,6 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
 import { LanguageProvider } from '@/context/LanguageContext';
+import { Analytics } from '@vercel/analytics/react';
+
 
 
 
@@ -116,6 +118,7 @@ export default function RootLayout({
           <Header />
           <main className="pt-19 min-h-screen">
             {children}
+            <Analytics />
           </main>
           <Footer />
         </LanguageProvider>
