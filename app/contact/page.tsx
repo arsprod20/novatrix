@@ -312,35 +312,20 @@ const ContactPage = () => {
                 <h2 className="text-2xl md:text-3xl font-bold mb-8">Nos Coordonnées</h2>
 
                 <div className="space-y-6">
-                  {/* Contact */}
-                  <div className="flex items-start">
-                    <div className="bg-cyan-900/30 p-3 rounded-lg mr-4">
-                      <Phone className="text-cyan-400" size={24} />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold mb-2">Téléphone & WhatsApp</h3>
-                      <p className="text-cyan-200">Support: (+222) 36 12 34 56</p>
-                      <p className="text-cyan-200">Commercial: (+222) 36 45 67 89</p>
-
-                      <button className="mt-3 bg-cyan-600 hover:bg-cyan-700 px-4 py-2 rounded-lg font-medium flex items-center">
-                        Appeler maintenant
-                      </button>
-                    </div>
-                  </div>
-
+            
                   {/* Réseaux Sociaux */}
                   <div className="pt-6 border-t border-cyan-400/20">
                     <h3 className="text-lg font-bold mb-4">Suivez-nous sur les réseaux</h3>
                     <div className="flex space-x-4">
                       {[
-                        { icon: <Facebook size={20} />, label: "Facebook", href: "https://www.facebook.com/novatrix01" },
+                        { icon: <Facebook size={20} />, label: "Facebook", href: "https://www.facebook.com/novatrix01"},
     { icon: <Twitter size={20} />, label: "Twitter", href: "https://x.com/Novatrix01" },
-    { icon: <Instagram size={20} />, label: "Instagram", href: "https://www.instagram.com/novat_rix/" },
-    { icon: <Linkedin size={20} />, label: "LinkedIn", href: "https://www.linkedin.com/company/novatrix01/" }
+    { icon: <Instagram size={20} />, label: "Instagram", href: "https://www.instagram.com/novat_rix/"},
+    { icon: <Linkedin size={20} />, label: "LinkedIn", href: "https://www.linkedin.com/company/novatrix01/"}
                       ].map((social, index) => (
                         <a
                           key={index}
-                          href="#"
+                          href={social.href}
                           className="w-12 h-12 rounded-full bg-[#000033] border border-cyan-400/20 flex items-center justify-center hover:bg-cyan-900/30 transition-colors"
                           aria-label={social.label}
                         >
