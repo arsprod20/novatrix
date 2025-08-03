@@ -6,10 +6,10 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: <Facebook size={20} />, label: "Facebook", href: "#" },
-    { icon: <Twitter size={20} />, label: "Twitter", href: "#" },
-    { icon: <Instagram size={20} />, label: "Instagram", href: "#" },
-    { icon: <Linkedin size={20} />, label: "LinkedIn", href: "#" }
+    { icon: <Facebook size={20} />, label: "Facebook", href: "https://www.facebook.com/novatrix01" },
+    { icon: <Twitter size={20} />, label: "Twitter", href: "https://x.com/Novatrix01" },
+    { icon: <Instagram size={20} />, label: "Instagram", href: "https://www.instagram.com/novat_rix/" },
+    { icon: <Linkedin size={20} />, label: "LinkedIn", href: "https://www.linkedin.com/company/novatrix01/" }
   ];
 
   return (

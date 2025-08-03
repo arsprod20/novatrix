@@ -333,10 +333,10 @@ const ContactPage = () => {
                     <h3 className="text-lg font-bold mb-4">Suivez-nous sur les réseaux</h3>
                     <div className="flex space-x-4">
                       {[
-                        { icon: <Facebook size={20} />, label: "Facebook" },
-                        { icon: <Twitter size={20} />, label: "Twitter" },
-                        { icon: <Instagram size={20} />, label: "Instagram" },
-                        { icon: <Linkedin size={20} />, label: "LinkedIn" },
+                        { icon: <Facebook size={20} />, label: "Facebook", href: "https://www.facebook.com/novatrix01" },
+    { icon: <Twitter size={20} />, label: "Twitter", href: "https://x.com/Novatrix01" },
+    { icon: <Instagram size={20} />, label: "Instagram", href: "https://www.instagram.com/novat_rix/" },
+    { icon: <Linkedin size={20} />, label: "LinkedIn", href: "https://www.linkedin.com/company/novatrix01/" }
                       ].map((social, index) => (
                         <a
                           key={index}
