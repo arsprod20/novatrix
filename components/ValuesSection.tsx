@@ -1,6 +1,8 @@
 import { motion, easeOut, easeInOut } from "framer-motion";
 import { useEffect, useState } from "react";
 import * as Icons from "lucide-react";
+import { useLanguage } from '@/context/LanguageContext';
+
 
 interface Value {
   title: string;
@@ -11,11 +13,15 @@ interface Value {
 
 const ValuesSection = () => {
   const [values, setValues] = useState<Value[]>([]);
+  const { translations, language } = useLanguage();
+  const ValueSectionTranslations = translations.ValueSection || {};
+
+
 
   useEffect(() => {
     const fetchValues = async () => {
       try {
-        const res = await fetch("/data/home/values.json");
+        const res = await fetch(`/data/home/values.${language}.json`);
         const data = await res.json();
         setValues(data);
       } catch (err) {
@@ -24,7 +30,7 @@ const ValuesSection = () => {
     };
 
     fetchValues();
-  }, []);
+  }, [language]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -69,16 +75,25 @@ const ValuesSection = () => {
           className="text-center mb-20"
         >
           <div className="inline-flex items-center gap-2 px-5 py-2 bg-cyan-900/30 rounded-full mb-4">
-            <span className="text-neon-cyan font-medium">Notre ADN</span>
+            <span className="text-neon-cyan font-medium">{ValueSectionTranslations.sectionTag}</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Nos{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-blue-400">
-              Valeurs Fondatrices
-            </span>
-          </h2>
+          {language === 'fr' ? (
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Nos{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-blue-400">
+                Valeurs Fondatrices
+              </span>
+            </h2>
+          ) : (
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-blue-400">
+                {ValueSectionTranslations.sectionTitle}
+              </span>
+            </h2>
+          )}
+
           <p className="text-cyan-200 max-w-2xl mx-auto text-lg">
-            Les principes qui guident chaque décision et chaque action chez Novatrix
+           {ValueSectionTranslations.sectionSubtitle}
           </p>
         </motion.div>
 
@@ -157,9 +172,9 @@ const ValuesSection = () => {
         >
           <div className="text-5xl text-neon-cyan absolute top-0 left-0 opacity-20">“</div>
           <p className="text-xl text-white italic relative px-10">
-            {"Nous ne faisons pas que coder. Nous construisons l’avenir digital de la Mauritanie — une solution à la fois."}
+            {ValueSectionTranslations.quote}
           </p>
-          <div className="mt-4 text-cyan-200 font-semibold">{"L'équipe Novatrix"}</div>
+          <div className="mt-4 text-cyan-200 font-semibold">{ValueSectionTranslations.quoteAuthor}</div>
           <div className="absolute bottom-0 right-0 text-5xl text-neon-cyan opacity-20 rotate-180">“</div>
         </motion.div>
       </div>

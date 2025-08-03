@@ -6,6 +6,8 @@ import {
 import * as Icons from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useLanguage } from '@/context/LanguageContext';
+
 
 interface Service {
   title: string;
@@ -17,12 +19,15 @@ const ServicesSection = () => {
   const [techServices, setTechServices] = useState<Service[]>([]);
   const [designServices, setDesignServices] = useState<Service[]>([]);
 
+  const { translations, language } = useLanguage();
+  const ServicesSectionTranslations = translations.ServicesSection || {};
+
   useEffect(() => {
     const fetchAll = async () => {
       try {
         const [techRes, designRes] = await Promise.all([
-          fetch("/data/home/tech-services.json"),
-          fetch("/data/home/design-services.json"),
+          fetch(`/data/home/tech-services.${language}.json`),
+          fetch(`/data/home/design-services.${language}.json`),
         ]);
         const [techData, designData] = await Promise.all([
           techRes.json(),
@@ -36,7 +41,7 @@ const ServicesSection = () => {
     };
 
     fetchAll();
-  }, []);
+  }, [language]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -73,13 +78,20 @@ const ServicesSection = () => {
           className="text-center mb-20"
         >
           <div className="inline-flex items-center gap-2 px-5 py-2 bg-cyan-900/30 rounded-full mb-4">
-            <span className="text-neon-cyan font-medium">{"Nos domaines d'expertise"}</span>
+            <span className="text-neon-cyan font-medium">{ServicesSectionTranslations.sectionTag}</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Nos <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-blue-400">Services Clés</span>
-          </h2>
+          {language === 'fr' ? (
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Nos <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-blue-400">Services Clés</span>
+            </h2>
+          ) : (
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-blue-400">{ServicesSectionTranslations.sectionTitle}</span>
+            </h2>
+          )}
+
           <p className="text-cyan-200 max-w-2xl mx-auto text-lg">
-            {"Des solutions sur mesure pour propulser votre entreprise à l'ère numérique"}
+            {ServicesSectionTranslations.sectionSubtitle}
           </p>
         </motion.div>
 
@@ -94,7 +106,7 @@ const ServicesSection = () => {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-cyan-900/30 to-blue-900/30 rounded-full mb-5 mx-auto">
                 <Code className="text-neon-cyan" size={32} />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">{"Technologies de l'Information"}</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">{ServicesSectionTranslations.techTitle}</h3>
               <div className="w-20 h-1 bg-gradient-to-r from-neon-cyan to-blue-500 mx-auto rounded-full"></div>
             </div>
 
@@ -142,7 +154,7 @@ const ServicesSection = () => {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-cyan-900/30 to-blue-900/30 rounded-full mb-5 mx-auto">
                 <Palette className="text-neon-cyan" size={32} />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Design Graphique & Communication</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">{ServicesSectionTranslations.designTitle}</h3>
               <div className="w-20 h-1 bg-gradient-to-r from-neon-cyan to-blue-500 mx-auto rounded-full"></div>
             </div>
 
@@ -192,7 +204,7 @@ const ServicesSection = () => {
             href="/services"
             className="inline-block px-8 py-4 text-lg font-semibold bg-gradient-to-r from-neon-cyan to-blue-500 rounded-lg text-deep-space hover:shadow-lg hover:shadow-cyan-500/30 transition-all"
           >
-            Découvrir tous nos services
+            {ServicesSectionTranslations.cta}
           </Link>
         </motion.div>
       </div>

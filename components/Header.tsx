@@ -1,17 +1,15 @@
+//components/Header.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X,MessageCircle } from 'lucide-react';
+import { Menu, X, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import Image from 'next/image';
+import { useLanguage } from '@/context/LanguageContext';
 
-const links = [
-  { name: 'Accueil', path: '/' },
-  { name: 'À propos', path: '/a-propos' },
-  { name: 'Services', path: '/services' },
-];
+
 
 const menuVariants: Variants = {
   hidden: {
@@ -52,9 +50,19 @@ const itemVariants: Variants = {
 };
 
 export default function Header() {
+  const { language, setLanguage, translations } = useLanguage();
+
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const headerTranslations = translations.header || {};
+
+  const links = [
+    { name: headerTranslations.home || 'Accueil', path: '/' },
+    { name: headerTranslations.about || 'À propos', path: '/a-propos' },
+    { name: headerTranslations.services || 'Services', path: '/services' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,19 +73,19 @@ export default function Header() {
   }, []);
 
   return (
-    <header
+    <header 
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled
-          ? 'bg-background/90 backdrop-blur-md py-0 shadow-lg border-b border-foreground/5'
-          : 'bg-transparent py-2'
-        }`}
+        ? 'bg-background/90 backdrop-blur-md py-0 shadow-lg border-b border-foreground/5'
+        : 'bg-transparent py-2'
+      } ${language === 'ar' ? 'rtl' : 'ltr'}`} // Ajout direction
     >
       <nav
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         aria-label="Navigation principale"
       >
         <div className="flex justify-between items-center h-16">
-             <Link href="/">
-            <motion.div 
+          <Link href="/">
+            <motion.div
               className="flex items-center group"
               whileHover={{ scale: 1.03 }}
             >
@@ -103,12 +111,11 @@ export default function Header() {
                 <li key={link.name}>
                   <Link
                     href={link.path}
-                    className={`
-                      relative text-base font-medium px-3 py-2 transition-all
-                      ${isActive
+                    className={`relative text-base font-medium px-3 py-2 transition-all ${
+                      isActive
                         ? 'text-[#00eaff]'
-                        : 'text-foreground/80 hover:text-[#00eaff] transition-colors duration-300'}
-                    `}
+                        : 'text-foreground/80 hover:text-[#00eaff] transition-colors duration-300'
+                    }`}
                     aria-current={isActive ? 'page' : undefined}
                   >
                     <span className="relative z-10">{link.name}</span>
@@ -124,20 +131,46 @@ export default function Header() {
               );
             })}
 
-            {/* Bouton Store à droite après Contact avec fond bleu */}
-             <motion.div
+            <motion.div
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
-              <Link 
+              <Link
                 href="/contact"
                 className="ml-2 px-6 py-2.5 bg-gradient-to-r from-neon-cyan to-blue-500 text-deep-space font-semibold rounded-lg flex items-center gap-2 hover:shadow-lg hover:shadow-cyan-500/30 transition-all"
               >
                 <MessageCircle size={18} />
-                <span>Contact</span>
+                {/* Correction traduction */}
+                <span>{headerTranslations.contact || 'Contact'}</span>
               </Link>
             </motion.div>
 
+            {/* Boutons de langue avec accessibilité */}
+            <li>
+              <div className="flex items-center gap-1 border border-foreground/20 rounded-lg p-1">
+                <button
+                  aria-label="Passer en français"
+                  onClick={() => setLanguage('fr')}
+                  className={`px-2 py-1 text-xs rounded-md transition-colors ${language === 'fr'
+                      ? 'bg-foreground/10 text-foreground'
+                      : 'text-foreground/50 hover:text-foreground'
+                    }`}
+                >
+                  FR
+                </button>
+                <div className="h-3 w-px bg-foreground/20"></div>
+                <button
+                  aria-label="Passer en arabe"
+                  onClick={() => setLanguage('ar')}
+                  className={`px-2 py-1 text-xs rounded-md transition-colors ${language === 'ar'
+                      ? 'bg-foreground/10 text-foreground'
+                      : 'text-foreground/50 hover:text-foreground'
+                    }`}
+                >
+                  AR
+                </button>
+              </div>
+            </li>
           </ul>
 
           <motion.button
@@ -165,7 +198,7 @@ export default function Header() {
           </motion.button>
         </div>
 
-        <AnimatePresence>
+       <AnimatePresence>
           {isMenuOpen && (
             <motion.div
               initial="hidden"
@@ -178,60 +211,78 @@ export default function Header() {
                 className="bg-background/95 backdrop-blur-2xl border border-foreground/10 rounded-xl shadow-2xl shadow-cyan-500/10 mt-2"
               >
                 <ul className="px-2 py-3 space-y-1">
-                  {links.map((link) => {
-                    const isActive = pathname === link.path;
-                    return (
-                      <motion.li
-                        key={link.name}
-                        variants={itemVariants}
+                  {links.map((link) => (
+                    <motion.li key={link.name} variants={itemVariants}>
+                      <Link
+                        href={link.path}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={`flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all ${
+                          pathname === link.path
+                            ? 'text-[#00eaff] bg-gradient-to-r from-foreground/5 to-foreground/10'
+                            : 'text-foreground/90 hover:bg-foreground/5'
+                        }`}
                       >
-                        <Link
-                          href={link.path}
-                          onClick={() => setIsMenuOpen(false)}
-                          className={`
-                            flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all
-                            ${isActive
-                              ? 'text-[#00eaff] bg-gradient-to-r from-foreground/5 to-foreground/10'
-                              : 'text-foreground/90 hover:bg-foreground/5'
-                            }
-                          `}
-                          aria-current={isActive ? 'page' : undefined}
-                        >
-                          {isActive ? (
-                            <motion.span
-                              className="w-1.5 h-1.5 rounded-full bg-[#00eaff] mr-3 shadow-[0_0_6px_#00eaff]"
-                              animate={{
-                                scale: [1, 1.3, 1],
-                                opacity: [0.8, 1, 0.8]
-                              }}
-                              transition={{
-                                repeat: Infinity,
-                                duration: 1.8
-                              }}
-                            />
-                          ) : (
-                            <span className="w-1.5 h-1.5 mr-3" />
-                          )}
-                          <span>{link.name}</span>
-                        </Link>
-                      </motion.li>
-                    );
-                  })}
+                        {pathname === link.path ? (
+                          <motion.span
+                            className="w-1.5 h-1.5 rounded-full bg-[#00eaff] mr-3 shadow-[0_0_6px_#00eaff]"
+                            animate={{
+                              scale: [1, 1.3, 1],
+                              opacity: [0.8, 1, 0.8]
+                            }}
+                            transition={{
+                              repeat: Infinity,
+                              duration: 1.8
+                            }}
+                          />
+                        ) : (
+                          <span className="w-1.5 h-1.5 mr-3" />
+                        )}
+                        <span>{link.name}</span>
+                      </Link>
+                    </motion.li>
+                  ))}
 
-                  {/* Bouton Store dans le menu mobile */}
-                  <motion.div 
-                  className="mt-8"
-                  variants={itemVariants}
-                >
-                  <Link
-                    href="/contact"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="px-6 py-4 bg-gradient-to-r from-neon-cyan to-blue-500 text-deep-space font-semibold rounded-lg flex items-center justify-center gap-3"
+                  <motion.div className="mt-8" variants={itemVariants}>
+                    <Link
+                      href="/contact"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="px-6 py-4 bg-gradient-to-r from-neon-cyan to-blue-500 text-deep-space font-semibold rounded-lg flex items-center justify-center gap-3"
+                    >
+                      <MessageCircle size={20} />
+                      {/* Correction traduction */}
+                      <span>{headerTranslations.contactMessage || 'Envoyer un message'}</span>
+                    </Link>
+                  </motion.div>
+
+                  <motion.div
+                    className="mt-4 flex justify-center gap-2"
+                    variants={itemVariants}
                   >
-                    <MessageCircle size={20} />
-                    <span>Envoyer un message</span>
-                  </Link>
-                </motion.div>
+                    <button
+                      onClick={() => {
+                        setLanguage('fr');
+                        setIsMenuOpen(false); // Fermer le menu
+                      }}
+                      className={`px-3 py-2 text-sm rounded-lg transition-colors ${language === 'fr'
+                          ? 'bg-foreground/10 text-foreground'
+                          : 'text-foreground/50'
+                        }`}
+                    >
+                      Français
+                    </button>
+                    <button
+                      onClick={() => {
+                        setLanguage('ar');
+                        setIsMenuOpen(false); // Fermer le menu
+                      }}
+                      className={`px-3 py-2 text-sm rounded-lg transition-colors ${language === 'ar'
+                          ? 'bg-foreground/10 text-foreground'
+                          : 'text-foreground/50'
+                        }`}
+                    >
+                      العربية
+                    </button>
+                  </motion.div>
                 </ul>
               </motion.div>
             </motion.div>

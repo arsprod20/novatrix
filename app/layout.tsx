@@ -4,6 +4,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
+import { LanguageProvider } from '@/context/LanguageContext';
+
 
 
 const geistSans = Geist({
@@ -105,24 +107,18 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning className="scroll-smooth">
       <head>
-        <head>
-          <meta name="apple-mobile-web-app-capable" content="yes" />
-          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-          <meta name="apple-mobile-web-app-title" content="Novatrix" />
-          <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        </head>
 
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
-        <Header />
-        <main className="pt-19 min-h-screen">
-
-          {children}
-
-        </main>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <main className="pt-19 min-h-screen">
+            {children}
+          </main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

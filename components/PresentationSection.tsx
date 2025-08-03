@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import * as Icons from "lucide-react";
 import { Rocket, Target, Lightbulb, Users } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useLanguage } from '@/context/LanguageContext';
 
 interface CoreValue {
   label: string;
@@ -10,6 +11,9 @@ interface CoreValue {
 }
 
 const PresentationSection = () => {
+  const { translations, language } = useLanguage();
+  const PresentationSectionTranslations = translations.PresentationSection || {};
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -34,7 +38,7 @@ const PresentationSection = () => {
   useEffect(() => {
     const fetchValues = async () => {
       try {
-        const response = await fetch("/data/home/core-values.json");
+        const response = await fetch(`/data/home/core-values.${language}.json`);
         const data = await response.json();
         setValues(data);
       } catch (error) {
@@ -43,7 +47,7 @@ const PresentationSection = () => {
     };
 
     fetchValues();
-  }, []);
+  }, [language]);
 
   return (
     <motion.section
@@ -61,28 +65,39 @@ const PresentationSection = () => {
           <motion.div variants={itemVariants}>
             <div className="inline-flex items-center gap-3 px-4 py-2 bg-cyan-900/20 rounded-full mb-4">
               <Rocket className="text-neon-cyan" size={20} />
-              <span className="text-neon-cyan font-semibold">À propos de nous</span>
+              <span className="text-neon-cyan font-semibold">{PresentationSectionTranslations.section?.tag}</span>
             </div>
-            <motion.h2
-              className="text-4xl md:text-5xl font-bold text-white mb-6"
-              variants={itemVariants}
-            >
-              Novatrix - <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-blue-400">{"L'Excellence"} Numérique</span> Mauritanienne
-            </motion.h2>
+
+            {language == "fr" ? (
+              <motion.h2
+                className="text-4xl md:text-5xl font-bold text-white mb-6"
+                variants={itemVariants}
+              >
+                Novatrix - <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-blue-400">{"L'Excellence"} Numérique</span> Mauritanienne
+              </motion.h2>
+            ) : (
+              <motion.h2
+                className="text-4xl md:text-5xl font-bold text-white mb-6"
+                variants={itemVariants}
+              >
+                {PresentationSectionTranslations.section?.title}
+              </motion.h2>
+            )}
+
           </motion.div>
 
           <motion.p
             className="text-cyan-100 text-lg leading-relaxed"
             variants={itemVariants}
           >
-            Fondée par une équipe de jeunes professionnels mauritaniens passionnés, Novatrix se positionne comme un acteur majeur dans deux secteurs stratégiques : les technologies de {"l'information"} et le design graphique.
+            {PresentationSectionTranslations.section?.paragraphs[0]}
           </motion.p>
 
           <motion.p
             className="text-cyan-100 text-lg leading-relaxed"
             variants={itemVariants}
           >
-            Notre mission : Accompagner les particuliers, entreprises, startups et institutions dans leur transformation numérique avec des solutions innovantes et adaptées au contexte local.
+             {PresentationSectionTranslations.section?.paragraphs[1]}
           </motion.p>
 
           <motion.div
@@ -98,10 +113,10 @@ const PresentationSection = () => {
                 <div className="p-2 bg-cyan-900/30 rounded-lg">
                   <Target className="text-neon-cyan" size={24} />
                 </div>
-                <h3 className="text-xl font-bold text-white">Vision</h3>
+                <h3 className="text-xl font-bold text-white">{PresentationSectionTranslations.vision?.title}</h3>
               </div>
               <p className="text-cyan-100">
-                Devenir le principal catalyseur de la transformation numérique en Mauritanie et positionner le pays comme un hub technologique régional.
+               {PresentationSectionTranslations.vision?.content}
               </p>
             </motion.div>
 
@@ -114,10 +129,10 @@ const PresentationSection = () => {
                 <div className="p-2 bg-cyan-900/30 rounded-lg">
                   <Lightbulb className="text-neon-cyan" size={24} />
                 </div>
-                <h3 className="text-xl font-bold text-white">Engagement</h3>
+                <h3 className="text-xl font-bold text-white">{PresentationSectionTranslations.engagement?.title}</h3>
               </div>
               <p className="text-cyan-100">
-                Chaque projet contribue au développement du secteur tech national et à la création {"d'opportunités"} pour les jeunes talents mauritaniens.
+                {PresentationSectionTranslations.engagement?.content}
               </p>
             </motion.div>
           </motion.div>
@@ -162,8 +177,8 @@ const PresentationSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-xl backdrop-blur-sm flex flex-col items-center justify-center p-6 border border-cyan-500/30">
                     <Users className="text-cyan-300 mb-4" size={48} />
                     <div className="text-center">
-                      <div className="text-white font-semibold text-lg">Notre équipe</div>
-                      <div className="text-cyan-200 mt-2">Jeunes talents mauritaniens passionnés</div>
+                      <div className="text-white font-semibold text-lg">{PresentationSectionTranslations.team?.title}</div>
+                      <div className="text-cyan-200 mt-2">{PresentationSectionTranslations.team?.subtitle}</div>
                     </div>
                   </div>
 

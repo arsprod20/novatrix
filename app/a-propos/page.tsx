@@ -5,10 +5,12 @@ import Link from "next/link";
 import * as LucideIcons from "lucide-react";
 import { useState, useEffect } from "react";
 import type { LucideProps } from "lucide-react";
+import { useLanguage } from '@/context/LanguageContext';
+
 
 // Définition du type pour les icônes Lucide
 type LucideIcon = React.ForwardRefExoticComponent<
-  Omit<LucideProps, "ref"> & 
+  Omit<LucideProps, "ref"> &
   React.RefAttributes<SVGSVGElement>
 >;
 
@@ -44,10 +46,13 @@ interface AboutData {
 const AboutPage = () => {
   const [data, setData] = useState<AboutData | null>(null);
 
+  const { translations, language } = useLanguage();
+  const aboutSectionTranslations = translations.aboutSection || {};
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/data/a-propos/aboutData.json");
+        const response = await fetch(`/data/a-propos/aboutData.${language}.json`);
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {
@@ -56,7 +61,7 @@ const AboutPage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [language]);
 
   // Fonction pour obtenir les icônes de manière sûre
   const getLucideIcon = (iconName: string): LucideIcon | null => {
@@ -82,14 +87,27 @@ const AboutPage = () => {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <motion.h1
-              className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              À <span className="text-cyan-400">Propos</span> de Nous
-            </motion.h1>
+
+            {language === 'fr' ? (
+              <motion.h1
+                className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                À <span className="text-cyan-400">Propos</span> de Nous
+              </motion.h1>
+            ) : (
+              <motion.h1
+                className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                {aboutSectionTranslations.heroSection?.title}
+              </motion.h1>
+            )}
+
 
             <motion.p
               className="text-lg md:text-xl text-cyan-100 mb-8"
@@ -97,7 +115,7 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              Nous sommes une équipe passionnée par la technologie, le design et {"l'impact numérique"} en Mauritanie et ailleurs.
+              {aboutSectionTranslations.heroSection?.subtitle}
             </motion.p>
           </div>
         </div>
@@ -114,23 +132,30 @@ const AboutPage = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Notre <span className="text-cyan-400">Histoire</span>
-              </h2>
+              {language === 'fr' ? (
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  Notre <span className="text-cyan-400">Histoire</span>
+                </h2>
+              ) : (
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  {aboutSectionTranslations.notreHistoire?.title}
+                </h2>
+              )}
+
               <p className="text-cyan-200 mb-4">
-                Novatrix est née {"d'une"} ambition partagée par de jeunes professionnels mauritaniens : participer activement à la modernisation du paysage numérique national.
+                {aboutSectionTranslations.notreHistoire?.paragraphs[0]}
               </p>
               <p className="text-cyan-200 mb-4">
-                Fondée en 2025 à Nouakchott, notre entreprise s’engage à construire des solutions digitales innovantes en valorisant les talents locaux et en répondant aux besoins concrets du marché.
+                {aboutSectionTranslations.notreHistoire?.paragraphs[1]}
               </p>
               <p className="text-cyan-200">
-                Nous amorçons cette aventure avec passion, humilité et détermination, en plaçant {"l'impact"} positif et la qualité au cœur de chacun de nos projets.
+                {aboutSectionTranslations.notreHistoire?.paragraphs[2]}
               </p>
 
               <div className="mt-8 p-6 bg-[#000066]/50 rounded-xl border border-cyan-400/20">
-                <h3 className="text-xl font-bold text-cyan-400 mb-3">Notre Vision</h3>
+                <h3 className="text-xl font-bold text-cyan-400 mb-3">{aboutSectionTranslations.notreHistoire?.visionTitle}</h3>
                 <p className="text-cyan-200">
-                  Devenir un acteur de référence dans le domaine de {"l'innovation"} numérique en Mauritanie, et bâtir des partenariats durables au service de la transformation digitale en Afrique de {"l'Ouest."}
+                  {aboutSectionTranslations.notreHistoire?.visionContent}
                 </p>
               </div>
             </motion.div>
@@ -152,7 +177,7 @@ const AboutPage = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#000066] via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent">
                   <p className="text-lg italic text-cyan-200">
-                    Chaque projet renforce notre engagement pour la croissance numérique mauritanienne
+                     {aboutSectionTranslations.notreHistoire?.engagementQuote}
                   </p>
                 </div>
               </div>
@@ -165,15 +190,29 @@ const AboutPage = () => {
       <section className="py-20 ">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              Notre <span className="text-cyan-400">Mission</span> & Valeurs
-            </motion.h2>
+
+            {language === 'fr' ? (
+              <motion.h2
+                className="text-3xl md:text-4xl font-bold mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                Notre <span className="text-cyan-400">Mission</span> & Valeurs
+              </motion.h2>
+            ) : (
+              <motion.h2
+                className="text-3xl md:text-4xl font-bold mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                {aboutSectionTranslations.notreMission?.title}
+              </motion.h2>
+            )}
+
 
             <motion.p
               className="text-xl text-cyan-300"
@@ -182,7 +221,7 @@ const AboutPage = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
               viewport={{ once: true }}
             >
-              Accompagner votre transformation numérique avec des solutions sur mesure et accessibles
+              {aboutSectionTranslations.notreMission?.subtitle}
             </motion.p>
           </div>
 
@@ -214,15 +253,29 @@ const AboutPage = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              Nos <span className="text-cyan-400">Domaines {"d'Expertise"}</span>
-            </motion.h2>
+
+            {language === 'fr' ? (
+              <motion.h2
+                className="text-3xl md:text-4xl font-bold mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                Nos <span className="text-cyan-400">Domaines {"d'Expertise"}</span>
+              </motion.h2>
+            ) : (
+              <motion.h2
+                className="text-3xl md:text-4xl font-bold mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                {aboutSectionTranslations.domainesExpertise?.title}
+              </motion.h2>
+            )}
+
 
             <motion.p
               className="text-xl text-cyan-300 max-w-2xl mx-auto"
@@ -231,7 +284,7 @@ const AboutPage = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
               viewport={{ once: true }}
             >
-              Une synergie unique entre technologie et créativité
+              {aboutSectionTranslations.domainesExpertise?.subtitle}
             </motion.p>
           </div>
 
@@ -274,12 +327,19 @@ const AboutPage = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Nos <span className="text-cyan-400">Engagements</span>
-              </h2>
+              {language === 'fr' ? (
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  Nos <span className="text-cyan-400">Engagements</span>
+                </h2>
+
+              ) : (
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  {aboutSectionTranslations.nosEngagements?.title}
+                </h2>
+              )}
 
               <p className="text-cyan-200 mb-6">
-                Chez Novatrix, nous transformons nos valeurs en actions concrètes pour garantir votre satisfaction.
+                {aboutSectionTranslations.nosEngagements?.intro}
               </p>
 
               <div className="space-y-6">
@@ -331,15 +391,28 @@ const AboutPage = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              Prêt à propulser votre <span className="text-cyan-400">projet numérique</span> ?
-            </motion.h2>
+            {language === 'fr' ? (
+              <motion.h2
+                className="text-3xl md:text-4xl font-bold mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                Prêt à propulser votre <span className="text-cyan-400">projet numérique</span> ?
+              </motion.h2>
+            ) : (
+              <motion.h2
+                className="text-3xl md:text-4xl font-bold mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                {aboutSectionTranslations.ctaSection?.title}
+              </motion.h2>
+            )}
+
 
             <motion.p
               className="text-xl text-cyan-300 mb-10"
@@ -348,7 +421,7 @@ const AboutPage = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
               viewport={{ once: true }}
             >
-              Contactez Novatrix pour des solutions sur mesure qui transforment vos défis en succès
+              {aboutSectionTranslations.ctaSection?.description}
             </motion.p>
 
             <motion.div
@@ -359,7 +432,7 @@ const AboutPage = () => {
             >
               <Link href="/contact">
                 <button className="bg-cyan-600 hover:bg-cyan-700 text-white px-8 py-4 rounded-lg text-lg font-semibold flex items-center mx-auto transition-all duration-300 transform hover:scale-105">
-                  Discutons de votre projet <LucideIcons.ArrowRight className="ml-2" size={18} />
+                  {aboutSectionTranslations.ctaSection?.buttonText} <LucideIcons.ArrowRight className="ml-2" size={18} />
                 </button>
               </Link>
             </motion.div>

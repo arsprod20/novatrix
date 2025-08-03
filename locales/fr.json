@@ -1,0 +1,171 @@
+{
+  "header": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "contact": "Contact",
+    "contactMessage": "Envoyer un message"
+  },
+  "hero": {
+    "title": "Innovation Numérique Excellence Créative",
+    "subtitle": "Novatrix propulse votre présence digitale avec des solutions sur mesure alliant technologie de pointe et design d'exception",
+    "contactButton": "Contactez-nous",
+    "servicesButton": "Nos Services"
+  },
+  "PresentationSection": {
+    "section": {
+      "tag": "À propos de nous",
+      "title": "Novatrix - L'Excellence Numérique Mauritanienne",
+      "paragraphs": [
+        "Fondée par une équipe de jeunes professionnels mauritaniens passionnés, Novatrix se positionne comme un acteur majeur dans deux secteurs stratégiques : les technologies de l'information et le design graphique.",
+        "Notre mission : Accompagner les particuliers, entreprises, startups et institutions dans leur transformation numérique avec des solutions innovantes et adaptées au contexte local."
+      ]
+    },
+    "vision": {
+      "title": "Vision",
+      "content": "Devenir le principal catalyseur de la transformation numérique en Mauritanie et positionner le pays comme un hub technologique régional."
+    },
+    "engagement": {
+      "title": "Engagement",
+      "content": "Chaque projet contribue au développement du secteur tech national et à la création d'opportunités pour les jeunes talents mauritaniens."
+    },
+    "team": {
+      "title": "Notre équipe",
+      "subtitle": "Jeunes talents mauritaniens passionnés"
+    }
+  },
+  "ServicesSection": {
+    "sectionTag": "Nos domaines d'expertise",
+    "sectionTitle": "Nos Services Clés",
+    "sectionSubtitle": "Des solutions sur mesure pour propulser votre entreprise à l'ère numérique",
+    "techTitle": "Technologies de l'Information",
+    "designTitle": "Design Graphique & Communication",
+    "cta": "Découvrir tous nos services"
+  },
+  "ValueSection": {
+    "sectionTag": "Notre ADN",
+    "sectionTitle": "Nos Valeurs Fondatrices",
+    "sectionSubtitle": "Les principes qui guident chaque décision et chaque action chez Novatrix",
+    "quote": "Nous ne faisons pas que coder. Nous construisons l’avenir digital de la Mauritanie — une solution à la fois.",
+    "quoteAuthor": "L'équipe Novatrix"
+  },
+  "ctaSection": {
+    "title": "Prêt à transformer votre entreprise ?",
+    "subtitle": "Contactez-nous dès aujourd'hui pour discuter de votre projet et découvrir comment nous pouvons propulser votre présence digitale",
+    "buttons": {
+      "requestQuote": "Demandez un devis gratuit",
+      "chatWithUs": "Discuter avec nous"
+    }
+  },
+  "aboutSection": {
+    "heroSection": {
+      "title": "À Propos de Nous",
+      "subtitle": "Nous sommes une équipe passionnée par la technologie, le design et l'impact numérique en Mauritanie et ailleurs."
+    },
+    "notreHistoire": {
+      "title": "Notre Histoire",
+      "paragraphs": [
+        "Novatrix est née d'une ambition partagée par de jeunes professionnels mauritaniens : participer activement à la modernisation du paysage numérique national.",
+        "Fondée en 2025 à Nouakchott, notre entreprise s’engage à construire des solutions digitales innovantes en valorisant les talents locaux et en répondant aux besoins concrets du marché.",
+        "Nous amorçons cette aventure avec passion, humilité et détermination, en plaçant l'impact positif et la qualité au cœur de chacun de nos projets."
+      ],
+      "visionTitle": "Notre Vision",
+      "visionContent": "Devenir un acteur de référence dans le domaine de l'innovation numérique en Mauritanie, et bâtir des partenariats durables au service de la transformation digitale en Afrique de l'Ouest.",
+      "engagementQuote": "Chaque projet renforce notre engagement pour la croissance numérique mauritanienne"
+    },
+    "notreMission": {
+      "title": "Notre Mission & Valeurs",
+      "subtitle": "Accompagner votre transformation numérique avec des solutions sur mesure et accessibles"
+    },
+    "domainesExpertise": {
+      "title": "Nos Domaines d'Expertise",
+      "subtitle": "Une synergie unique entre technologie et créativité"
+    },
+    "nosEngagements": {
+      "title": "Nos Engagements",
+      "intro": "Chez Novatrix, nous transformons nos valeurs en actions concrètes pour garantir votre satisfaction."
+    },
+    "ctaSection": {
+      "title": "Prêt à propulser votre projet numérique ?",
+      "description": "Contactez Novatrix pour des solutions sur mesure qui transforment vos défis en succès",
+      "buttonText": "Discutons de votre projet"
+    }
+  },
+  "serviceSection": {
+    "heroSection": {
+      "title": "Solutions Professionnelles",
+      "subtitle": "Des services sur mesure pour transformer votre vision digitale"
+    },
+    "tabs": {
+      "it": "Services IT",
+      "design": "Design & Communication"
+    },
+    "servicesSection": {
+      "it": {
+        "title": "Expertise Technologique",
+        "subtitle": "Des solutions techniques innovantes pour votre transformation digitale"
+      },
+      "design": {
+        "title": "Création Digitale",
+        "subtitle": "Identité visuelle forte et expériences utilisateur mémorables"
+      }
+    },
+    "workflowSection": {
+      "title": "Processus Structuré",
+      "subtitle": "Une méthodologie éprouvée pour garantir votre succès"
+    },
+    "cta": {
+      "title": "Prêt à transformer votre projet ?",
+      "button": "Discuter de votre projet"
+    }
+  },
+  "contactSection": {
+    "hero": {
+      "title": "Contactez Novatrix",
+      "subtitle": "Nous sommes à votre écoute pour concrétiser vos projets digitaux et répondre à toutes vos questions"
+    },
+    "tabs": {
+      "support": "Support Client",
+      "commercial": "Demande Commerciale",
+      "partnership": "Partenariat"
+    },
+    "form": {
+      "titles": {
+        "support": "Demande de Support",
+        "commercial": "Devis Commercial",
+        "partnership": "Demande de Partenariat"
+      },
+      "description": "Remplissez le formulaire et notre équipe vous répondra dans les plus brefs délais",
+      "labels": {
+        "name": "Votre nom complet *",
+        "email": "Adresse email *",
+        "phone": "Téléphone",
+        "company": "Entreprise / Organisation",
+        "service_support": "Type de support demandé *",
+        "service_commercial": "Service intéressé *",
+        "service_partnership": "Type de partenariat *",
+        "message": "Votre message *",
+        "selectOptionPlaceholder": "Sélectionnez une option"
+      },
+      "placeholders": {
+        "name": "Ex: Mohamed Ahmed",
+        "email": "Ex: contact@entreprise.mr",
+        "phone": "Ex: +222 36 12 34 56",
+        "company": "Ex: Société XYZ",
+        "message": "Décrivez votre projet ou votre demande..."
+      },
+      "submit": {
+        "default": "Envoyer mon message",
+        "sending": "Envoi en cours..."
+      }
+    },
+    "contactInfo": {
+      "socialTitle": "Suivez-nous sur les réseaux"
+    },
+    "modal": {
+      "successTitle": "Message envoyé avec succès !",
+      "successMessage": "Nous avons bien reçu votre demande et vous contacterons dans les plus brefs délais.",
+      "close": "Fermer"
+    }
+  }
+}

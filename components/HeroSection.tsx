@@ -1,3 +1,4 @@
+//components/HeroSection.tsx
 'use client';
 
 import { motion, useMotionValue, useTransform } from 'framer-motion';
@@ -5,6 +6,8 @@ import { MessageCircle, ArrowRight, Zap, Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
+
 
 // Composant réutilisable pour les boutons
 const CtaButton = ({
@@ -53,6 +56,9 @@ const HeroSection = () => {
     const bgX = useTransform(x, [-1, 1], [5, -5]);
     const bgY = useTransform(y, [-1, 1], [5, -5]);
     const frame = useRef<number | null>(null);
+
+    const { translations } = useLanguage();
+    const heroTranslations = translations.hero || {};
 
     useEffect(() => {
         setIsClient(true);
@@ -158,7 +164,7 @@ const HeroSection = () => {
                             '0 0 10px rgba(3, 238, 255, 0.8), 0 0 20px rgba(33, 57, 251, 0.6)',
                     }}
                 >
-                    Innovation Numérique Excellence Créative
+                     {heroTranslations.title || "Innovation Numérique Excellence Créative"}
                 </motion.h1>
 
                 <motion.p
@@ -167,8 +173,7 @@ const HeroSection = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 0.6 }}
                 >
-                    Novatrix propulse votre présence digitale avec des solutions sur mesure
-                    alliant technologie de pointe et design d&apos;exception
+                     {heroTranslations.subtitle || "Novatrix propulse votre présence digitale avec des solutions sur mesure alliant technologie de pointe et design d'exception"}
                 </motion.p>
 
                 <motion.div
@@ -183,7 +188,7 @@ const HeroSection = () => {
                         delay={0.7}
                         className="cta-button"
                     >
-                        Contactez-nous
+                        {heroTranslations.contactButton || "Contactez-nous"}
                     </CtaButton>
 
                     <CtaButton
@@ -192,7 +197,7 @@ const HeroSection = () => {
                         delay={0.8}
                         className="border border-neon-cyan rounded-lg text-neon-cyan hover:bg-cyan-900/20 transition-all"
                     >
-                        Nos Services
+                        {heroTranslations.servicesButton || "Nos Services"}
                     </CtaButton>
                 </motion.div>
             </div>

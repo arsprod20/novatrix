@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import * as LucideIcons from "lucide-react";
 import type { LucideProps } from "lucide-react";
+import { useLanguage } from '@/context/LanguageContext';
+
 
 // Définition des types
 type ServiceItem = {
@@ -34,10 +36,13 @@ const ServicesPage = () => {
   const [activeTab, setActiveTab] = useState("it");
   const [data, setData] = useState<ServicesData | null>(null);
 
+  const { translations, language } = useLanguage();
+  const serviceSectionTranslations = translations.serviceSection || {};
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/data/services/servicesData.json");
+        const response = await fetch(`/data/services/servicesData.${language}.json`);
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {
@@ -46,7 +51,7 @@ const ServicesPage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [language]);
 
   // Fonction pour obtenir les icônes
   const getLucideIcon = (
@@ -76,14 +81,28 @@ const ServicesPage = () => {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <motion.h1
-              className="text-4xl md:text-6xl font-bold mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              Solutions <span className="text-cyan-400">Professionnelles</span>
-            </motion.h1>
+            {language === 'fr' ? (
+              <motion.h1
+                className="text-4xl md:text-6xl font-bold mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+
+                Solutions <span className="text-cyan-400">Professionnelles</span>
+              </motion.h1>
+            ) : (
+              <motion.h1
+                className="text-4xl md:text-6xl font-bold mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+
+                {serviceSectionTranslations.heroSection?.title}
+              </motion.h1>
+            )}
+
 
             <motion.p
               className="text-xl text-cyan-300 max-w-2xl mx-auto"
@@ -91,7 +110,7 @@ const ServicesPage = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              Des services sur mesure pour transformer votre vision digitale
+              {serviceSectionTranslations.heroSection?.subtitle}
             </motion.p>
           </div>
         </div>
@@ -103,28 +122,28 @@ const ServicesPage = () => {
           <div className="flex flex-wrap justify-center gap-2 md:gap-4">
             <motion.button
               className={`px-5 py-2.5 rounded-full font-medium transition-all flex items-center ${activeTab === "it"
-                  ? "bg-cyan-600 text-white shadow-lg shadow-cyan-700/30"
-                  : "bg-[#000044] text-cyan-200 hover:bg-cyan-900/50"
+                ? "bg-cyan-600 text-white shadow-lg shadow-cyan-700/30"
+                : "bg-[#000044] text-cyan-200 hover:bg-cyan-900/50"
                 }`}
               onClick={() => setActiveTab("it")}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
             >
               {getLucideIcon("Code", "mr-2", 18)}
-              Services IT
+              {serviceSectionTranslations.tabs?.it}
             </motion.button>
 
             <motion.button
               className={`px-5 py-2.5 rounded-full font-medium transition-all flex items-center ${activeTab === "design"
-                  ? "bg-cyan-600 text-white shadow-lg shadow-cyan-700/30"
-                  : "bg-[#000044] text-cyan-200 hover:bg-cyan-900/50"
+                ? "bg-cyan-600 text-white shadow-lg shadow-cyan-700/30"
+                : "bg-[#000044] text-cyan-200 hover:bg-cyan-900/50"
                 }`}
               onClick={() => setActiveTab("design")}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
             >
               {getLucideIcon("PenTool", "mr-2", 18)}
-              Design & Communication
+              {serviceSectionTranslations.tabs?.design}
             </motion.button>
           </div>
         </div>
@@ -141,11 +160,11 @@ const ServicesPage = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              {activeTab === "it" ? "Expertise " : "Création "}
-              <span className="text-cyan-400">
-                {activeTab === "it" ? "Technologique" : "Digitale"}
-              </span>
+              {activeTab === "it"
+                ? serviceSectionTranslations.servicesSection?.it?.title
+                : serviceSectionTranslations.servicesSection?.design?.title}
             </motion.h2>
+
 
             <motion.p
               className="text-lg text-cyan-300 max-w-2xl mx-auto"
@@ -154,10 +173,11 @@ const ServicesPage = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
               viewport={{ once: true }}
             >
-              {activeTab === "it"
-                ? "Des solutions techniques innovantes pour votre transformation digitale"
-                : "Identité visuelle forte et expériences utilisateur mémorables"}
+              {
+                serviceSectionTranslations.servicesSection?.[activeTab]?.subtitle
+              }
             </motion.p>
+
           </div>
 
           <motion.div
@@ -236,15 +256,31 @@ const ServicesPage = () => {
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              Processus <span className="text-cyan-400">Structuré</span>
-            </motion.h2>
+
+            {language === 'fr' ? (
+              <motion.h2
+                className="text-3xl md:text-4xl font-bold mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                Processus <span className="text-cyan-400">Structuré</span>
+              </motion.h2>
+            ) : (
+              <motion.h2
+                className="text-3xl md:text-4xl font-bold mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                {
+                  serviceSectionTranslations.workflowSection?.title
+                }
+              </motion.h2>
+            )}
+
 
             <motion.p
               className="text-lg text-cyan-300 max-w-2xl mx-auto"
@@ -253,7 +289,9 @@ const ServicesPage = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
               viewport={{ once: true }}
             >
-              Une méthodologie éprouvée pour garantir votre succès
+              {
+                serviceSectionTranslations.workflowSection?.subtitle
+              }
             </motion.p>
           </div>
 
@@ -304,7 +342,9 @@ const ServicesPage = () => {
               transition={{ delay: 0.3, duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold mb-6 text-white">Prêt à transformer votre projet ?</h3>
+              <h3 className="text-2xl font-bold mb-6 text-white">{
+                serviceSectionTranslations.cta?.title
+              }</h3>
               <motion.a
                 href="/contact"
                 className="inline-block bg-gradient-to-r from-cyan-600 to-teal-600 text-white px-8 py-3.5 rounded-full font-medium shadow-lg shadow-cyan-700/30 hover:shadow-cyan-600/40 transition-all"
@@ -312,7 +352,9 @@ const ServicesPage = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <span className="flex items-center">
-                  Discuter de votre projet
+                  {
+                    serviceSectionTranslations.cta?.button
+                  }
                   {getLucideIcon("ArrowRight", "ml-2", 18)}
                 </span>
               </motion.a>

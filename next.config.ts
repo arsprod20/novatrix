@@ -1,10 +1,11 @@
-// next.config.ts
+//next.config.ts
 import type { NextConfig } from "next";
 
-/**
- * Configuration Next.js unifiée
- */
 const nextConfig: NextConfig = {
+  /* config options here */
+};
+
+module.exports = {
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -14,7 +15,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Tu peux ajouter d'autres options ici
 };
 
 export default nextConfig;

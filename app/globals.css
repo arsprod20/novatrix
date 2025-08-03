@@ -272,3 +272,9 @@ h1 {
   animation: float 6s infinite ease-in-out;
 }
 
+.rtl {
+  direction: rtl;
+}
+.ltr {
+  direction: ltr;
+}
