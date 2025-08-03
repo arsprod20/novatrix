@@ -1,20 +1,20 @@
-//next.config.ts
+// next.config.ts
 import type { NextConfig } from "next";
 
+/**
+ * Configuration Next.js unifiée
+ */
 const nextConfig: NextConfig = {
-  /* config options here */
-};
-
-module.exports = {
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'www.amadousow.dev',
+        hostname: 'www.novatrix.dev',
       },
     ],
   },
+  // Tu peux ajouter d'autres options ici
 };
 
 export default nextConfig;
